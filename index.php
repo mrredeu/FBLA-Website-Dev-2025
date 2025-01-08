@@ -9,66 +9,52 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beehive Academy Job Portal</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <?php include 'navbar.php'; ?>
 
-    <header>
-        <div class="top-bar">
-            <div class="logo">
-                <a href="index.php"><img src="assets/images/beehive-logo.png" alt="Beehive Academy Logo"></a>
+    <!-- Hero Section -->
+    <section class="hero-slider">
+        <div class="slider">
+            <div class="slide active">
+                <img src="assets/images/intern-1.jpg" alt="Intern at Work">
+                <!--https://www.amazon.jobs/content/en/career-programs/university/internships-for-students-->
+                <div class="overlay">
+                    <h1>Beehive Academy Job Portal</h1>
+                    <p>Connecting students to opportunities – Apply for jobs or internships today!</p>
+                    <a href="jobs.php" class="btn">View Jobs</a>
+                </div>
             </div>
-            <div class="contact-info">
-                <span>📞 (801) 576-0070</span>
-                <div class="social-links">
-                    <a href="#">🔵</a>
-                    <a href="#">🐦</a>
-                    <a href="#">▶️</a>
+            <div class="slide">
+                <img src="assets/images/intern-2.png" alt="Internship Opportunities">
+                <!--https://intermountainhealthcare.org/-/media/images/intermountain-health/student-programs/student-image.ashx?h=4024&iar=0&w=6048&hash=93C09D8D64E2F00E6DA111DC967401A7-->
+                <div class="overlay">
+                    <h1>Explore New Internships</h1>
+                    <p>Gain experience while you learn – Check out the latest openings.</p>
+                    <a href="jobs.php" class="btn">View Jobs</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="assets/images/intern-3.jpg" alt="Student Learning Experience">
+                <!--https://www.ziprecruiter.com/career/Electrical-Engineering-Intern/What-Is-How-to-Become-->
+                <div class="overlay">
+                    <h1>Build Your Future</h1>
+                    <p>Apply now for top internships and career paths.</p>
+                    <a href="jobs.php" class="btn">View Jobs</a>
                 </div>
             </div>
         </div>
 
-        <!-- Navigation Bar -->
-        <nav class="navbar">
-            <div class="container">
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="students/jobs.php">Job Listings</a></li>
-                    <li><a href="employers/submit-job.php">Submit a Job</a></li>
-
-                    <!-- Welcome Message for Logged-In Users -->
-                    <?php if (isset($_SESSION['username'])): ?>
-                        <li>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></li>
-                        <li><a href="logout.php" class="logout-btn">Logout</a></li>
-                    <?php else: ?>
-                        <li><button onclick="toggleLoginBox()" class="login-btn">Login</button></li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Login Box -->
-    <div id="login-box" class="login-box" style="display: none;">
-        <div class="box-content">
-            <form id="login-form" class="form" action="process_login.php" method="POST">
-                <h2>Login</h2>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <p>Don't have an account? <a href="register.php">Register here</a></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Main Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Beehive Academy Job Portal</h1>
-            <p>Connecting students to opportunities – Apply for jobs or internships today!</p>
-            <a href="students/jobs.php" class="btn">View Jobs</a>
+        <!-- Navigation Dots -->
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Beehive Science & Technology Academy</p>
@@ -76,12 +62,41 @@ session_start();
     </footer>
 
     <script>
-        // Toggle Login Box
         function toggleLoginBox() {
             const loginBox = document.getElementById('login-box');
             loginBox.style.display = (loginBox.style.display === 'block') ? 'none' : 'block';
         }
-    </script>
 
+        let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlides(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+            dots[i].classList.remove('active');
+        });
+
+        slides[index].classList.add('active');
+        slides[index].style.display = 'block';
+        dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentIndex++;
+        if (currentIndex >= slides.length) currentIndex = 0;
+        showSlides(currentIndex);
+    }
+
+    function currentSlide(index) {
+        currentIndex = index - 1;
+        showSlides(currentIndex);
+    }
+
+    // Auto-slide every 10 seconds
+    setInterval(nextSlide, 10000);
+    showSlides(currentIndex);
+    </script>
 </body>
 </html>
