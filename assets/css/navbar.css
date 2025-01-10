@@ -93,7 +93,40 @@ header {
 }
 
 .navbar ul li {
-    margin: 0 20px;
+    margin: auto 20px;
+}
+
+.navbar ul li a, .login-btn {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.navbar ul li a:hover, .login-btn:hover{
+    color: rgb(254, 155, 34);
+}
+
+/* Login Box Styling */
+.login-box {
+    display: none;
+    position: absolute;
+    margin-top:50px;
+    top: 100px;
+    right: 5%;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    border-radius: 8px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .navbar ul li a, .login-btn {
@@ -107,21 +140,8 @@ header {
     transition: color 0.2s ease;
 }
 
-.navbar ul li a:hover, .login-btn:hover {
+.login-btn.active {
     color: rgb(254, 155, 34);
-}
-
-/* Login Box Styling */
-.login-box {
-    display: none;
-    position: absolute;
-    top: 150px;
-    right: 5%;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    border-radius: 8px;
-    z-index: 1000;
 }
 
 .box-content {

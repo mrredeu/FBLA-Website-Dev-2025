@@ -37,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <li>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></li>
                     <li><a href="logout.php" class="logout-btn">Logout</a></li>
                 <?php else: ?>
-                    <li><button onclick="toggleLoginBox()" class="login-btn">Login</button></li>
+                    <li><button class="login-btn">Login</button></li>
                 <?php endif; ?>
             </ul>
         </div>
