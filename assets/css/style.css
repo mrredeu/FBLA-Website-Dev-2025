@@ -111,42 +111,6 @@ header {
     background-color: rgb(254, 155, 34);
 }
 
-/* Login Box Styling */
-.login-box {
-    display: none;
-    position: absolute;
-    top: 100px;
-    right: 10%;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    border-radius: 8px;
-    z-index: 1000;
-}
-
-.box-content {
-    padding: 20px;
-    text-align: center;
-}
-
-.form input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.form button {
-    padding: 10px 20px;
-    background: rgb(254, 155, 34);
-    border: none;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 footer {
     background: #f4f4f4;
     text-align: center;

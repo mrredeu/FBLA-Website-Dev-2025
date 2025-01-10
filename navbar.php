@@ -31,8 +31,8 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="students/jobs.php">Job Listings</a></li>
-                <li><a href="employers/submit-job.php">Submit a Job</a></li>
+                <li><a href="jobs.php">Job Listings</a></li>
+                <li><a href="submit-job.php">Submit a Job</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></li>
                     <li><a href="logout.php" class="logout-btn">Logout</a></li>
@@ -48,7 +48,6 @@ if (session_status() === PHP_SESSION_NONE) {
 <div id="login-box" class="login-box" style="display: none;">
     <div class="box-content">
         <form id="login-form" class="form" action="process_login.php" method="POST">
-            <h2>Login</h2>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
