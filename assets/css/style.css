@@ -4,12 +4,6 @@ body, html {
     font-family: 'Arial', sans-serif;
 }
 
-header {
-    background: black;
-    color: rgb(254, 155, 34);
-    padding: 0;
-}
-
 .hero {
     text-align: center;
     padding: 50px 20px;
@@ -112,58 +106,10 @@ header {
 }
 
 footer {
-    background: #f4f4f4;
+    background: white;
     text-align: center;
-    padding: 20px 0;
 }
 
-.register {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.register h1 {
-    margin-bottom: 20px;
-}
-
-.register form {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.register label {
-    display: block;
-    text-align: left;
-    margin: 10px 0 5px;
-}
-
-.register input, .register select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.register button {
-    padding: 12px 30px;
-    background: gold;
-    border: none;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.register button:hover {
-    background: rgb(254, 155, 34);
-}
-
-.register p {
-    margin-top: 15px;
+footer .container p {
+    background-color: white;
 }

@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 
 <link rel="stylesheet" href="assets/css/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <!-- Top Bar -->
 <header>
@@ -31,13 +32,33 @@ if (session_status() === PHP_SESSION_NONE) {
             </div>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="jobs.php">Job Listings</a></li>
-                <li><a href="submit-job.php">Submit a Job</a></li>
+                
+                <!-- Job Listings -->
+                <?php if (!isset($_SESSION['role']) || $_SESSION['role'] === 'student'): ?>
+                    <li><a href="jobs.php">Job Listings</a></li>
+                <?php endif; ?>
+
+                <!-- Admin: Review Accounts -->
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <li><a href="review_accounts.php">Review Accounts</a></li>
+                <?php endif; ?>
+
+                <!-- Admin: Review a Job -->
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <li><a href="review_job.php">Review Job Postings</a></li>
+                <?php endif; ?>
+
+                <!-- Employer: Submit a Job -->
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'employer'): ?>
+                    <li><a href="submit_job.php">Submit Job Posting</a></li>
+                <?php endif; ?>
+
+                <!-- Common Links -->
                 <?php if (isset($_SESSION['username'])): ?>
-                    <li>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></li>
+                    <li>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</li>
                     <li><a href="logout.php" class="logout-btn">Logout</a></li>
                 <?php else: ?>
-                    <li><button class="login-btn">Login</button></li>
+                    <li><button class="login-btn" onclick="toggleLoginBox()">Login</button></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -45,13 +66,29 @@ if (session_status() === PHP_SESSION_NONE) {
 </header>
 
 <!-- Login Box -->
-<div id="login-box" class="login-box" style="display: none;">
+<div id="login-box" class="login-box" style="display: <?php echo isset($_GET['error']) ? 'block' : 'none'; ?>;">
     <div class="box-content">
         <form id="login-form" class="form" action="process_login.php" method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+            <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
             <button type="submit">Login</button>
+            <?php if (isset($_GET['error'])): ?>
+                <p class="error">
+                    <?php 
+                    switch ($_GET['error']) {
+                        case 'invalid':
+                            echo "Invalid email or password.";
+                            break;
+                        case 'notfound':
+                            echo "No account found with this email.";
+                            break;
+                    }
+                    ?>
+                </p>
+            <?php endif; ?>
             <p>Don't have an account? <a href="register.php">Register here</a></p>
         </form>
     </div>
 </div>
+
+<script src="assets/js/navbar.js"></script>

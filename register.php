@@ -4,30 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Beehive Job Portal</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/register.css">
 </head>
 <body>
-
-    <header>
-        <div class="top-bar">
-            <div class="logo">
-                <a href="index.php"><img src="assets/images/beehive-logo.png" alt="Beehive Academy Logo"></a>
-            </div>
-            <div class="contact-info">
-                <span>📞 (801) 576-0070</span>
-            </div>
-        </div>
-        <nav class="navbar">
-            <div class="container">
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="students/jobs.php">Job Listings</a></li>
-                    <li><a href="employers/submit-job.php">Submit a Job</a></li>
-                    <li><a href="login.php">Login</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <?php include 'navbar.php'; ?>
 
     <!-- Registration Form -->
     <section class="register">
@@ -35,13 +15,13 @@
             <h1>Create an Account</h1>
             <form action="process_register.php" method="POST">
                 <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" name="full_name" required>
+                <input type="text" id="full-name" name="full_name" required autocomplete="off">
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required autocomplete="off">
 
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required autocomplete="off">
 
                 <label for="role">Register As:</label>
                 <select id="role" name="role">
@@ -51,7 +31,6 @@
 
                 <button type="submit">Register</button>
             </form>
-            <p>Already have an account? <a href="login.php">Login here</a></p>
         </div>
     </section>
 
@@ -60,6 +39,5 @@
             <p>&copy; 2024 Beehive Science & Technology Academy</p>
         </div>
     </footer>
-
 </body>
 </html>

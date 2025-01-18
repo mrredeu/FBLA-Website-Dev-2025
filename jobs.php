@@ -1,5 +1,10 @@
 <?php
 session_start();
+require 'db.php'; // Include database connection
+
+// Fetch approved jobs from the database
+$query = $pdo->query("SELECT id, title, location, description, pay FROM jobs WHERE is_approved = 1");
+$jobs = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -8,50 +13,29 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
+    <link rel="stylesheet" href="assets/css/jobs.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
     
-    <div class="container">
+    <div class="container-jobs">
         <h1>Available Jobs</h1>
 
-        <div class="job-listing">
-            <p>Job 1: Software Developer</p>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <button onclick="applyForJob(1)">Apply Now</button>
-            <?php else: ?>
-                <button disabled>Please log in to apply</button>
-            <?php endif; ?>
-        </div>
-
-        <div class="job-listing">
-            <p>Job 2: Project Manager</p>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <button onclick="applyForJob(2)">Apply Now</button>
-            <?php else: ?>
-                <button disabled>Please log in to apply</button>
-            <?php endif; ?>
-        </div>
-
-        <div class="job-listing">
-            <p>Job 3: Data Analyst</p>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <button onclick="applyForJob(3)">Apply Now</button>
-            <?php else: ?>
-                <button disabled>Please log in to apply</button>
-            <?php endif; ?>
-        </div>
+        <?php foreach ($jobs as $job): ?>
+            <div class="job-listing">
+                <h2><?= htmlspecialchars($job['title']) ?></h2>
+                <p><strong>Location:</strong> <?= htmlspecialchars($job['location']) ?></p>
+                <p><strong>Description:</strong> <?= htmlspecialchars($job['description']) ?></p>
+                <p><strong>Pay:</strong> <?= htmlspecialchars($job['pay']) ?></p>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'student'): ?>
+                    <button onclick="applyForJob(<?= $job['id'] ?>)">Apply Now</button>
+                <?php elseif (isset($_SESSION['user_id'])): ?>
+                    <button disabled>Only students can apply</button>
+                <?php else: ?>
+                    <button disabled>Please log in to apply</button>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
-
-    <script>
-    function applyForJob(jobId) {
-        alert("You have successfully applied for Job ID: " + jobId);
-        // In a real scenario, you'd make an AJAX call to submit the application
-    }
-    
-    function openLoginModal() {
-        alert("Please log in or register to apply for jobs.");
-    }
-    </script>
 </body>
 </html>

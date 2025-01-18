@@ -9,7 +9,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beehive Academy Job Portal</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
@@ -61,38 +60,6 @@ session_start();
         </div>
     </footer>
 
-    <script src="assets/js/navbar.js"></script>
-    <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-
-        function showSlides(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                slide.style.display = 'none';
-                dots[i].classList.remove('active');
-            });
-
-            slides[index].classList.add('active');
-            slides[index].style.display = 'block';
-            dots[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentIndex++;
-            if (currentIndex >= slides.length) currentIndex = 0;
-            showSlides(currentIndex);
-        }
-
-        function currentSlide(index) {
-            currentIndex = index - 1;
-            showSlides(currentIndex);
-        }
-
-        // Auto-slide every 10 seconds
-        setInterval(nextSlide, 10000);
-        showSlides(currentIndex);
-    </script>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

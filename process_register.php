@@ -1,64 +1,64 @@
 <?php
-// Include database connection and PHPMailer
-require 'includes/db.php';
-require 'vendor/autoload.php'; // Path to PHPMailer if installed via Composer
+require 'db.php';
+require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Form data
-$full_name = $_POST['full_name'];
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$role = $_POST['role'];
-
-// Insert into the database
-$sql = "INSERT INTO users (full_name, email, password, role) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $full_name, $email, $password, $role);
-
-// Execute and send email if registration is successful
-if ($stmt->execute()) {
-
-    // Send email to the user
-    $mail = new PHPMailer(true);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $full_name = htmlspecialchars($_POST['full_name']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_BCRYPT);
+    $role = htmlspecialchars($_POST['role']);
 
     try {
-        // Server settings
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';  // SMTP server
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'your-email@gmail.com';  // Your Gmail address
-        $mail->Password   = 'your-email-password';  // App password or your Gmail password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        // Insert into the database using PDO
+        $sql = "INSERT INTO users (full_name, email, password, role, is_approved) VALUES (:full_name, :email, :password, :role, 0)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':full_name' => $full_name,
+            ':email' => $email,
+            ':password' => $password,
+            ':role' => $role,
+        ]);
 
-        // Recipients
-        $mail->setFrom('your-email@gmail.com', 'Beehive Academy');
-        $mail->addAddress($email, $full_name);
+        // Send email to the user
+        $mail = new PHPMailer(true);
 
-        // Email content
-        $mail->isHTML(true);
-        $mail->Subject = 'Thank You for Registering at Beehive Academy Job Portal';
-        $mail->Body    = "
-            <h1>Welcome to Beehive Academy!</h1>
-            <p>Hi <b>$full_name</b>,</p>
-            <p>Thank you for registering. Please allow 1-2 business days for your account to be reviewed. You will receive another email once your account is activated.</p>
-            <br>
-            <p>Best regards,</p>
-            <p>Beehive Science & Technology Academy</p>
-        ";
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'pashatestermails@gmail.com'; // Your email
+            $mail->Password   = 'zyvnuncmydpegrhf'; // App password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = 465;
 
-        $mail->send();
-        header("Location: login.php?success=registered");
-    } catch (Exception $e) {
-        echo "Registration successful, but email could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $mail->setFrom('pashatestermails@gmail.com', 'Beehive Academy');
+            $mail->addAddress($email, $full_name);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Thank You for Registering at Beehive Academy Job Portal';
+            $mail->Body    = "
+                <h1>Welcome to Beehive Academy!</h1>
+                <p>Hi <b>$full_name</b>,</p>
+                <p>Thank you for registering. Your account is pending approval by the administrator.</p>
+                <p>Please wait for further updates.</p>
+                <br>
+                <p>Best regards,</p>
+                <p>Beehive Science & Technology Academy</p>
+            ";
+
+            $mail->send();
+
+            // Redirect to account page with a success message
+            header("Location: account.php?status=registered");
+            exit();
+        } catch (Exception $e) {
+            echo "Registration successful, but email could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    } catch (PDOException $e) {
+        die("Database error: " . $e->getMessage());
     }
-} else {
-    echo "Error: " . $stmt->error;
 }
-
-// Close connections
-$stmt->close();
-$conn->close();
 ?>
