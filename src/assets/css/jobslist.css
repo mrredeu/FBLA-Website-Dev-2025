@@ -1,0 +1,48 @@
+.jobslist-section {
+  padding: 40px 0;
+}
+
+.jobslist-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.jobslist-jobListing {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: #fefefe;
+}
+
+.jobslist-jobListing h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.jobslist-applyButton {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.jobslist-applyButton:hover {
+  background-color: #45a049;
+}
+
+.jobslist-disabledButton {
+  padding: 10px 20px;
+  background-color: #ddd;
+  color: #888;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+}

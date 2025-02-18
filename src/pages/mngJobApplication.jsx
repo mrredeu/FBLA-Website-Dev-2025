@@ -1,0 +1,119 @@
+import { useEffect, useState } from "react";
+import Navbar from "../components/navbar";
+import "../assets/css/mngJobApplication.css";
+import ViewJobDetails from "../components/mngJobDetails.jsx";
+
+const ManageJobApplications = () => {
+  const [jobs, setJobs] = useState([]);
+  const [selectedJobId, setSelectedJobId] = useState(null);
+  const email = localStorage.getItem("email");
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await fetch("/api/manage-job-application.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        const data = await response.json();
+        if (data.success) {
+          setJobs(data.jobs || []);
+        } else {
+          alert(data.message || "Failed to fetch job applications.");
+        }
+      } catch (error) {
+        console.error("Error fetching job applications:", error);
+      }
+    };
+
+    if (email) {
+      fetchJobs();
+    } else {
+      alert("Employer email not found. Please log in again.");
+    }
+  }, [email]);
+
+  const handleViewApplications = (jobId) => {
+    setSelectedJobId(jobId);
+  };
+
+  const handleDeleteJob = async (jobId) => {
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      try {
+        const response = await fetch(
+          "/api/manage-job-application.php?action=deleteJob",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "deleteJob", email, jobId }),
+          }
+        );
+        const data = await response.json();
+        if (data.success) {
+          alert("Job deleted successfully!");
+          setJobs((prevJobs) => prevJobs.filter((job) => job.id !== jobId));
+        } else {
+          alert(data.message || "Failed to delete job.");
+        }
+      } catch (error) {
+        console.error("Error deleting job:", error);
+      }
+    }
+  };
+
+  // Show ViewJobDetails if a job is selected
+  if (selectedJobId) {
+    return (
+      <ViewJobDetails
+        jobId={selectedJobId}
+        onBack={() => setSelectedJobId(null)}
+      />
+    );
+  }
+
+  return (
+    <>
+      <Navbar />
+      <div className="manage-jobs-container">
+        <h1>Manage Job Applications</h1>
+        {jobs.length > 0 ? (
+          <div className="jobs-list">
+            {jobs.map((job) => (
+              <div key={job.id} className="job-card">
+                <h2>{job.title}</h2>
+                <p>
+                  <strong>Location:</strong> {job.location}
+                </p>
+                <p>
+                  <strong>Description:</strong> {job.description}
+                </p>
+                <p>
+                  <strong>Pay:</strong> {job.pay}
+                </p>
+                <div className="job-card-actions">
+                  <button
+                    className="view-applications-btn"
+                    onClick={() => handleViewApplications(job.id)}
+                  >
+                    View Applications
+                  </button>
+                  <button
+                    className="delete-job-btn"
+                    onClick={() => handleDeleteJob(job.id)}
+                  >
+                    Delete Job
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No job applications to manage at the moment.</p>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default ManageJobApplications;

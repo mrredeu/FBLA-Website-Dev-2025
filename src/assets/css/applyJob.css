@@ -1,0 +1,68 @@
+/* applyjob.css */
+
+/* Container for the entire apply job section */
+.applyjob-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 1rem;
+  background-color: #f9f9f9; /* Light background to distinguish form area */
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+.applyjob-container h1 {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.applyjob-container p {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+/* Survey questions section */
+.applyjob-question {
+  margin-bottom: 1.5rem;
+}
+
+.applyjob-question label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* The textarea for answers */
+.applyjob-question textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; /* Allow vertical resizing only */
+}
+
+/* Submit button */
+.applyjob-submitButton {
+  display: inline-block;
+  background-color: #3498db; /* Primary button color */
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.applyjob-submitButton:hover {
+  background-color: #2980b9; /* Darken on hover */
+}
+
+/* Loading message style (optional) */
+.applyjob-container h2 {
+  font-size: 1.25rem;
+  text-align: center;
+  margin: 2rem 0;
+}

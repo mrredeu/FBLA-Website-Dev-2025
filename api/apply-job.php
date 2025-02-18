@@ -1,0 +1,165 @@
+<?php
+require 'db.php';               // Your PDO connection (PDO $pdo)
+require '../vendor/autoload.php'; // PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+header('Content-Type: application/json');
+
+$response = ["success" => false, "message" => ""];
+
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Gather basic POST data
+        $jobId        = $_POST['jobId']        ?? null;
+        $studentEmail = $_POST['studentEmail'] ?? null;
+        $responses    = $_POST['responses']    ?? []; // questionId => answer
+
+        // Basic validation
+        if (!$jobId || !$studentEmail) {
+            $response["message"] = "Missing jobId or studentEmail.";
+            echo json_encode($response);
+            exit;
+        }
+
+        // 1) Fetch Job Info (title + employer email)
+        $stmtJob = $pdo->prepare("
+            SELECT title, poster_email
+            FROM jobs
+            WHERE id = ?
+        ");
+        $stmtJob->execute([$jobId]);
+        $jobRow = $stmtJob->fetch(PDO::FETCH_ASSOC);
+
+        if (!$jobRow) {
+            $response["message"] = "Job not found or invalid ID.";
+            echo json_encode($response);
+            exit;
+        }
+
+        $jobTitle    = $jobRow["title"];
+        $posterEmail = $jobRow["poster_email"];
+
+        // 2) Fetch Student's Full Name from users table
+        $stmtUser = $pdo->prepare("
+            SELECT full_name
+            FROM users
+            WHERE email = ?
+        ");
+        $stmtUser->execute([$studentEmail]);
+        $userRow = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+        // If the student is found, use full_name; otherwise just revert to their email
+        $studentName = $userRow ? $userRow['full_name'] : $studentEmail;
+
+        // 3) Insert the main application record into `job_applications`
+        $stmtInsertApp = $pdo->prepare("
+            INSERT INTO job_applications (job_id, student_email, created_at)
+            VALUES (?, ?, NOW())
+        ");
+        $stmtInsertApp->execute([$jobId, $studentEmail]);
+        $applicationId = $pdo->lastInsertId();
+
+        // 4) Insert each question/answer into `job_application_answers`
+        if ($applicationId && !empty($responses)) {
+            $stmtAnswers = $pdo->prepare("
+                INSERT INTO job_application_answers (application_id, question_id, answer_text)
+                VALUES (?, ?, ?)
+            ");
+            foreach ($responses as $qId => $answer) {
+                $stmtAnswers->execute([$applicationId, $qId, $answer]);
+            }
+        }
+
+        // 5) Handle file uploads and store references in `job_application_files`
+        //    (For example, storing the local path. If you later move to AWS S3, 
+        //     store the S3 URL or object key instead.)
+        if (!empty($_FILES['attachments']['name'])) {
+            // Create an uploads folder if not exists
+            $uploadDir = __DIR__ . '/uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            $stmtFiles = $pdo->prepare("
+                INSERT INTO job_application_files (application_id, original_filename, saved_path)
+                VALUES (?, ?, ?)
+            ");
+
+            foreach ($_FILES['attachments']['name'] as $idx => $filename) {
+                $error   = $_FILES['attachments']['error'][$idx];
+                $tmpName = $_FILES['attachments']['tmp_name'][$idx];
+
+                if ($error === UPLOAD_ERR_OK) {
+                    $uniqueName  = time() . '_' . basename($filename);
+                    $destination = $uploadDir . $uniqueName;
+
+                    if (move_uploaded_file($tmpName, $destination)) {
+                        // Save in DB
+                        $stmtFiles->execute([$applicationId, $filename, $uniqueName]);
+                    }
+                }
+            }
+        }
+
+        // 6) Build a simpler email letting the employer know there's a new application
+        //    The employer can log in to see full details/answers/attachments.
+        $subject = "New Job Application Submitted: \"{$jobTitle}\"";
+        // For colors (Beehive’s orange #FE9B22), we’ll keep it minimal here
+        $body = "
+            <div style='font-family:Arial, sans-serif;'>
+                <h2 style='color:#FE9B22;'>New Job Application Received</h2>
+                <p>
+                  A new job application has been submitted for the position:
+                  <strong>{$jobTitle}</strong>.
+                </p>
+                <p>
+                  Applicant: <strong>{$studentName}</strong> ({$studentEmail})
+                </p>
+                <p>
+                  Please log in to the portal to review the full application details,
+                  including any attachments.
+                </p>
+                <hr>
+                <p style='font-size:13px; color:#555;'>
+                  This notification was generated by Beehive's Job Portal.
+                </p>
+            </div>
+        ";
+
+        // 7) Send the notification email via PHPMailer
+        $mail = new PHPMailer(true);
+        try {
+            // SMTP settings
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'pashatestermails@gmail.com';
+            $mail->Password   = 'zyvnuncmydpegrhf';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = 465;
+
+            $mail->setFrom('pashatestermails@gmail.com', 'Beehive Science & Technology Academy');
+            $mail->addAddress($posterEmail);
+
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body    = $body;
+
+            $mail->send();
+            $response["success"] = true;
+            $response["message"] = "Application submitted and notification sent!";
+        } catch (Exception $e) {
+            $response["success"] = false;
+            $response["message"] = "Application stored, but email failed: " . $mail->ErrorInfo;
+        }
+
+        echo json_encode($response);
+    } else {
+        $response["message"] = "Invalid request method. Use POST.";
+        echo json_encode($response);
+    }
+} catch (PDOException $e) {
+    $response["message"] = "Database error: " . $e->getMessage();
+    echo json_encode($response);
+}

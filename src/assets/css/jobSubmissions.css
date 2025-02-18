@@ -1,0 +1,101 @@
+/* Set the overall background color and font */
+body {
+  background-color: #fff7df; /* A warm, light color */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Container styles for each main section */
+.job-submissions-container,
+.submission-details-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fffaf0; /* Slightly different shade from body */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+.job-submissions-container h1,
+.submission-details-container h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #5c3b00; /* A darker brown for headings */
+}
+
+/* Paragraph style, spacing */
+.job-submissions-container p,
+.submission-details-container p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Tables */
+.submissions-table,
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.submissions-table th,
+.details-table th {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 2px solid #d7c0a6;
+  background-color: #f6e7d2; /* Subtle header background */
+  font-weight: 600;
+  color: #5c3b00;
+}
+
+.submissions-table td,
+.details-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ece2d4;
+  vertical-align: top;
+}
+
+/* Striped row effect (optional) */
+.submissions-table tbody tr:nth-child(even),
+.details-table tbody tr:nth-child(even) {
+  background-color: #fff2da;
+}
+
+/* Buttons */
+.review-button,
+.back-button {
+  background-color: #f4a261; /* A warm orange */
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.review-button:hover,
+.back-button:hover {
+  background-color: #e08f4a;
+}
+
+/* On smaller screens, make sure the container is fluid */
+@media (max-width: 600px) {
+  .job-submissions-container,
+  .submission-details-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .submissions-table th,
+  .details-table th,
+  .submissions-table td,
+  .details-table td {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+}

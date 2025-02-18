@@ -1,0 +1,196 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "PT Sans", sans-serif;
+  background-color: #f3e3bc;
+  color: #333;
+}
+
+header {
+  background: black;
+  color: rgb(254, 155, 34);
+  padding: 0;
+}
+
+.navbar-top-bar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 200px;
+  padding: 17px 10px;
+}
+
+.navbar-top-bar .navbar-academy-name {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-top-bar .navbar-contact-info {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-top-bar .navbar-contact-info span {
+  margin-right: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.navbar-top-bar .navbar-contact-info span:hover {
+  color: white;
+}
+
+.navbar-top-bar .navbar-social-links a {
+  color: rgb(254, 155, 34);
+  font-size: 20px;
+  margin: 0px 10px;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.navbar-top-bar .navbar-social-links a:hover {
+  transform: scale(1.1);
+}
+
+.navbar-logo img {
+  width: 150px;
+  vertical-align: middle;
+}
+
+.navbar-real {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fefefe;
+  padding: 10px 0px;
+}
+
+.navbar-real .navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0px 200px 0px 210px;
+}
+
+.navbar-real .navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-real .navbar-logo img {
+  max-width: 125px;
+  width: 125px;
+}
+
+.navbar-real ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.navbar-real ul li {
+  margin: auto 20px;
+}
+
+.navbar-real ul li a,
+.navbar-login-btn,
+.navbar-logout-btn {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navbar-real ul li a:hover,
+.navbar-login-btn:hover,
+.navbar-logout-btn:hover {
+  color: rgb(254, 155, 34);
+  background-color: white;
+}
+
+/* Login Box Styling */
+/* Default hidden state */
+.navbar-login-box {
+  display: none; /* Start hidden */
+  position: absolute;
+  margin-top: 50px;
+  top: 100px;
+  right: 5%;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  border-radius: 8px;
+  z-index: 1000;
+  opacity: 0; /* Fully transparent */
+  transform: translateY(-10px); /* Slide up */
+  transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth transitions */
+}
+
+/* Visible state */
+.navbar-login-box.visible {
+  display: block; /* Make it visible */
+  opacity: 1; /* Fully opaque */
+  transform: translateY(0); /* Reset upward movement */
+}
+
+.navbar-real ul li a,
+.navbar-login-btn,
+.navbar-logout-btn {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navbar-login-btn.active,
+.navbar-logout-btn.active {
+  color: rgb(254, 155, 34);
+}
+
+.navbar-box-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.navbar-form input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.navbar-form button {
+  padding: 10px 20px;
+  background: rgb(254, 155, 34);
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.navbar-error {
+  color: red;
+}
+
+.navbar-form p {
+  margin: 10px 0px 0px 0px;
+}
