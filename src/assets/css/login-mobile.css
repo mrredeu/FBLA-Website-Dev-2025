@@ -1,0 +1,55 @@
+.login-mobile-container {
+  max-width: 80%;
+  margin: 80px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.login-mobile-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-mobile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-mobile-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.login-mobile-button {
+  padding: 10px;
+  background: rgb(254, 155, 34);
+  border: none;
+  border-radius: 4px;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s ease;
+}
+
+.login-mobile-button:hover {
+  background: rgb(254, 155, 34);
+}
+
+.login-mobile-error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.login-mobile-register {
+  font-size: 14px;
+}

@@ -3,7 +3,6 @@ html {
   margin: 0;
   padding: 0;
   font-family: "PT Sans", sans-serif;
-  background-color: #f3e3bc;
   color: #333;
 }
 
@@ -128,7 +127,7 @@ header {
   position: absolute;
   margin-top: 50px;
   top: 100px;
-  right: 5%;
+  right: 3%;
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 350px;
@@ -193,4 +192,266 @@ header {
 
 .navbar-form p {
   margin: 10px 0px 0px 0px;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: none;
+  font-size: 20px;
+  border: 1px solid rgb(254, 155, 34);
+  border-radius: 0;
+  cursor: pointer;
+  color: black;
+  padding: 10px 15px;
+  transition: color 0.2s ease;
+  color: rgb(254, 155, 34);
+  background-color: white;
+}
+
+.hamburger-btn:hover {
+  color: rgb(254, 155, 34);
+  background-color: white;
+}
+
+/* Modified Hamburger Menu Container */
+.hamburger-menu {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 0; /* vertical padding only */
+  border-radius: 0; /* no rounding */
+}
+
+.hamburger-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  background-color: rgba(221, 221, 221, 0.2);
+}
+
+/* Each list item becomes full-width and displayed in its own row */
+.hamburger-menu ul li {
+  display: block;
+  padding: 10px 20px;
+  margin: 0;
+  border: 1px solid #ddd;
+}
+
+.hamburger-menu ul li:last-child {
+  border-bottom: none;
+}
+
+/* Ensure links and buttons take full width */
+.hamburger-menu ul li a,
+.hamburger-menu ul li button {
+  display: block;
+  width: 100%;
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* Media Query for Mobile */
+@media screen and (max-width: 376px) {
+  /* Hide all nav list items except the last (hamburger button) */
+  .navbar-real ul li:not(:last-child) {
+    display: none;
+  }
+  /* Ensure hamburger button is visible */
+  .hamburger-btn {
+    display: block;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+  }
+
+  /* Top Bar: Stack academy name and contact info vertically */
+  .navbar-top-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+  .navbar-top-bar .navbar-academy-name {
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .navbar-top-bar .navbar-contact-info {
+    flex-direction: column;
+    font-size: 13px;
+  }
+
+  .navbar-top-bar .navbar-contact-info span {
+    margin: 5px 0 15px 0px;
+  }
+
+  /* Navigation Bar: Logo on left, hamburger on right */
+  .navbar-real .navbar-container {
+    margin: 0 -10px 0 25px;
+    justify-content: space-between;
+  }
+}
+
+/* Media Query for Mobile */
+@media screen and (min-width: 376px) and (max-width: 426px) {
+  /* Hide all nav list items except the last (hamburger button) */
+  .navbar-real ul li:not(:last-child) {
+    display: none;
+  }
+  /* Ensure hamburger button is visible */
+  .hamburger-btn {
+    display: block;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+  }
+
+  /* Top Bar: Stack academy name and contact info vertically */
+  .navbar-top-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+  .navbar-top-bar .navbar-academy-name {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .navbar-top-bar .navbar-contact-info {
+    flex-direction: column;
+    font-size: 14px;
+  }
+
+  .navbar-top-bar .navbar-contact-info span {
+    margin: 5px 0 15px 0px;
+  }
+
+  /* Navigation Bar: Logo on left, hamburger on right */
+  .navbar-real .navbar-container {
+    margin: 0 10px 0 25px;
+    justify-content: space-between;
+  }
+}
+
+/* Media Query for Tablet */
+@media screen and (min-width: 426px) and (max-width: 769px) {
+  /* Hide all nav list items except the last (hamburger button) */
+  .navbar-real ul li:not(:last-child) {
+    display: none;
+  }
+  /* Ensure hamburger button is visible */
+  .hamburger-btn {
+    display: block;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+  }
+
+  /* Top Bar: Stack academy name and contact info vertically */
+  .navbar-top-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 20px;
+  }
+
+  .navbar-top-bar .navbar-academy-name {
+    margin-bottom: 10px;
+  }
+
+  .navbar-top-bar .navbar-contact-info {
+    flex-direction: column;
+  }
+
+  .navbar-top-bar .navbar-contact-info span {
+    margin: 5px 0 15px 0px;
+  }
+
+  /* Navigation Bar: Logo on left, hamburger on right */
+  .navbar-real .navbar-container {
+    margin: 0 25px;
+    justify-content: space-between;
+  }
+}
+
+/* Media Query for screens between 768px and 1024px */
+@media screen and (min-width: 769px) and (max-width: 1025px) {
+  .navbar-top-bar {
+    margin: 0 50px;
+  }
+
+  .navbar-real .navbar-container {
+    margin: 0 7% 0 50px;
+  }
+
+  .navbar-container ul {
+    margin-left: 20px;
+  }
+
+  .navbar-container ul li {
+    margin: auto 40px;
+  }
+
+  .navbar-container ul li a,
+  .navbar-container ul li button {
+    font-size: 1.5vmax;
+    padding: 0;
+  }
+
+  .navbar-top-bar .navbar-academy-name {
+    font-size: 1.5vmax;
+  }
+
+  .navbar-top-bar .navbar-contact-info span {
+    font-size: 1.4vmax;
+  }
+
+  .navbar-top-bar .navbar-social-links a {
+    font-size: 1.5vmax;
+  }
+}
+
+/* Media Query for screens between 1024px and 1440px */
+@media screen and (min-width: 1025px) and (max-width: 1441px) {
+  .navbar-top-bar {
+    margin: 0 50px;
+  }
+
+  .navbar-real .navbar-container {
+    margin: 0 7% 0 60px;
+  }
+
+  .navbar-container ul {
+    margin-left: 20px;
+  }
+
+  .navbar-container ul li {
+    margin: auto 40px;
+  }
+}
+
+/* Media Query for screens min 1440px */
+@media screen and (min-width: 1441px) {
+  .navbar-top-bar {
+    margin: 0 50px;
+  }
+
+  .navbar-real .navbar-container {
+    margin: 0 5% 0 60px;
+  }
+
+  .navbar-container ul {
+    margin-left: 20px;
+  }
+
+  .navbar-container ul li {
+    margin: auto 40px;
+  }
 }

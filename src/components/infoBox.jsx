@@ -1,11 +1,11 @@
-import Navbar from "../components/navbar";
+import Navbar from "./navbar";
 import "../assets/css/saccount.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Account = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [statusType, setStatusType] = useState("");
 
   useEffect(() => {
@@ -18,6 +18,8 @@ const Account = () => {
       setStatusType("error");
     } else if (status === "denied") {
       setStatusType("denied");
+    } else if (status == "job-success") {
+      setStatusType("job-success");
     }
   }, [location.search]);
 
@@ -45,6 +47,15 @@ const Account = () => {
                 Your account application has been denied. If you believe this is
                 an error or have any questions, please contact us for
                 assistance.
+              </p>
+            </>
+          ) : statusType === "job-success" ? (
+            <>
+              <h1>Your Job Has Been Submitted!</h1>
+              <p>
+                Your job application was processed successfully. Please wait for
+                admin to approve your job posting. If you need assistance,
+                please contact us.
               </p>
             </>
           ) : (

@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "/src/pages/homepage.jsx";
 import Register from "/src/pages/register.jsx";
-import SAccount from "/src/pages/sAccount.jsx";
+import SAccount from "/src/components/infoBox.jsx";
 import RVAccount from "/src/pages/mngAccounts.jsx";
 import JobsList from "/src/pages/jobsList.jsx";
 import CApp from "/src/pages/sJob.jsx";
@@ -13,6 +13,7 @@ import ManageJobApplications from "/src/pages/mngJobApplication.jsx";
 import ApplyJob from "/src/components/applyJob.jsx";
 import RVJobSubmissions from "/src/pages/rvJobSubmissions.jsx";
 import RVStudentSubmission from "/src/components/rvStudentSubmission.jsx";
+import LoginMobile from "/src/components/login-mobile.jsx";
 
 // Function to initialize the database by calling index.php
 const initializeDatabase = async () => {
@@ -61,6 +62,7 @@ initializeDatabase().then(() => {
             element={<ManageJobApplications />}
           />
           <Route path="/" element={<Navigate to="/homepage" />} />
+          <Route path="/login-mobile" element={<LoginMobile />} />
         </Routes>
       </BrowserRouter>
     </StrictMode>

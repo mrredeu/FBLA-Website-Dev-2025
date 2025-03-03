@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "../assets/css/submitapplication.css";
 
 const LOCAL_STORAGE_KEY = "jobFormData";
 
 const SubmitApplication = () => {
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState(() => {
     const savedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     return savedData?.questions || [{ text: "", charLimit: "" }];
@@ -91,8 +93,8 @@ const SubmitApplication = () => {
 
       const result = await response.json();
       if (result.success) {
-        alert("Job submitted successfully!");
         localStorage.removeItem(LOCAL_STORAGE_KEY);
+        navigate("/account_status?status=job-success");
       } else {
         alert(result.message || "Submission failed. Please try again.");
       }

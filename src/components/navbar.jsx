@@ -9,6 +9,8 @@ const Navbar = () => {
   });
   const [loginBoxVisible, setLoginBoxVisible] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Fetch session data from the server
   useEffect(() => {
@@ -36,6 +38,17 @@ const Navbar = () => {
       }
     };
     fetchSession();
+  }, []);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 769);
+      setHamburgerOpen(false);
+      setLoginBoxVisible(false);
+    };
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+    return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
   // Handle login form submission
@@ -156,14 +169,14 @@ const Navbar = () => {
                     <a href="/manage-accounts">Manage Accounts</a>
                   </li>
                   <li>
-                    <a href="/review-job-listings">Review Job Postings</a>
+                    <a href="/review-job-listings">Review Job Listings</a>
                   </li>
                 </>
               )}
               {session.role === "employer" && (
                 <>
                   <li>
-                    <a href="/submit-job-application">Create Job Listing</a>
+                    <a href="/submit-job-application">Create Application</a>
                   </li>
                   <li>
                     <a href="/manage-job-applications">Manage Applications</a>
@@ -175,7 +188,24 @@ const Navbar = () => {
               )}
 
               {/* User Greeting and Auth Links */}
-              {session.username ? (
+              {!session.username ? (
+                <li>
+                  <button
+                    className="navbar-login-btn"
+                    {...(!isMobile && {
+                      onMouseEnter: () => setLoginBoxVisible(true),
+                      onMouseLeave: () => setLoginBoxVisible(false),
+                    })}
+                    onClick={() => {
+                      if (isMobile) {
+                        window.location.href = "/login-mobile";
+                      }
+                    }}
+                  >
+                    Login
+                  </button>
+                </li>
+              ) : (
                 <>
                   <li>Welcome, {session.username}!</li>
                   <li>
@@ -187,12 +217,108 @@ const Navbar = () => {
                     </button>
                   </li>
                 </>
+              )}
+              {/* Hamburger menu button always in nav */}
+              <li>
+                <button
+                  className="hamburger-btn"
+                  onClick={() => setHamburgerOpen(!hamburgerOpen)}
+                >
+                  <i className="fa-solid fa-bars"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        {/* Hamburger Menu displayed below the navbar */}
+        {hamburgerOpen && (
+          <div className="hamburger-menu">
+            <ul>
+              <li>
+                <a href="/homepage" onClick={() => setHamburgerOpen(false)}>
+                  Home
+                </a>
+              </li>
+              {(!session.role || session.role === "student") && (
+                <li>
+                  <a href="/jobs-list" onClick={() => setHamburgerOpen(false)}>
+                    Job Listings
+                  </a>
+                </li>
+              )}
+              {session.role === "admin" && (
+                <>
+                  <li>
+                    <a
+                      href="/manage-accounts"
+                      onClick={() => setHamburgerOpen(false)}
+                    >
+                      Manage Accounts
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/review-job-listings"
+                      onClick={() => setHamburgerOpen(false)}
+                    >
+                      Review Job Listings
+                    </a>
+                  </li>
+                </>
+              )}
+              {session.role === "employer" && (
+                <>
+                  <li>
+                    <a
+                      href="/submit-job-application"
+                      onClick={() => setHamburgerOpen(false)}
+                    >
+                      Create Application
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/manage-job-applications"
+                      onClick={() => setHamburgerOpen(false)}
+                    >
+                      Manage Applications
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/job-submissions"
+                      onClick={() => setHamburgerOpen(false)}
+                    >
+                      Review Submissions
+                    </a>
+                  </li>
+                </>
+              )}
+              {session.username ? (
+                <>
+                  <li>
+                    <button
+                      className="navbar-logout-btn"
+                      onClick={() => {
+                        handleLogout();
+                        setHamburgerOpen(false);
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
               ) : (
                 <li>
                   <button
                     className="navbar-login-btn"
-                    onMouseEnter={() => setLoginBoxVisible(true)}
-                    onMouseLeave={() => setLoginBoxVisible(false)}
+                    onClick={() => {
+                      setHamburgerOpen(false);
+                      window.location.href = isMobile
+                        ? "/login-mobile"
+                        : "/homepage";
+                    }}
                   >
                     Login
                   </button>
@@ -200,7 +326,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-        </nav>
+        )}
       </header>
 
       {/* Login Box */}

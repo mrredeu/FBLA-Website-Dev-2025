@@ -9,7 +9,7 @@ const HomePage = () => {
   const slides = [
     {
       img: intern1,
-      title: "Beehive Academy Job Portal",
+      title: "Beehive Job Portal",
       description:
         "Connecting students to opportunities – Apply for jobs or internships today!",
       link: "/jobs-list",
@@ -24,7 +24,8 @@ const HomePage = () => {
     {
       img: intern3,
       title: "Build Your Future",
-      description: "Apply now for top internships and career paths.",
+      description:
+        "Broaden your horizons, collaborate with leading experts, and gain the real-world experience.",
       link: "/jobs-list",
     },
   ];
