@@ -53,3 +53,61 @@
 .login-mobile-register {
   font-size: 14px;
 }
+
+/* Media Queries */
+@media screen and (max-width: 426px) {
+  .login-mobile-container {
+    max-width: 80%;
+    margin: 40px auto;
+    padding: 15px;
+  }
+
+  .login-mobile-title {
+    font-size: 20px;
+  }
+
+  .login-mobile-input {
+    font-size: 14px;
+  }
+
+  .login-mobile-button {
+    font-size: 14px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .login-mobile-register {
+    font-size: 14px;
+  }
+
+  .login-mobile-input {
+    width: 94%;
+  }
+}
+
+@media screen and (min-width: 427px) {
+  .login-mobile-container {
+    max-width: 60%;
+    margin: 60px auto;
+    padding: 20px;
+  }
+
+  .login-mobile-title {
+    font-size: 22px;
+  }
+
+  .login-mobile-input {
+    font-size: 15px;
+    width: 90%;
+    margin: 0 auto 15px auto;
+  }
+
+  .login-mobile-button {
+    font-size: 15px;
+    width: 95%;
+  }
+
+  .login-mobile-register {
+    font-size: 15px;
+  }
+}

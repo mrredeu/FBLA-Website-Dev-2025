@@ -49,7 +49,7 @@ const LoginMobile = () => {
       {/* Render Navbar at top */}
       <Navbar />
       <div className="login-mobile-container">
-        <h2 className="login-mobile-title">Login</h2>
+        <h2 className="login-mobile-title">Beehive Portal Login</h2>
         <form
           id="login-form-mobile"
           className="login-mobile-form"
