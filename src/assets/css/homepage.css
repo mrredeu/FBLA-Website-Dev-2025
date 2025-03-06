@@ -97,6 +97,7 @@ a:hover {
 }
 
 .homepage-overlay .homepage-btn {
+  display: inline-block;
   padding: 15px 35px;
   background-color: rgb(254, 155, 34);
   color: #fff;
@@ -132,7 +133,6 @@ a:hover {
   transition: background-color 0.3s, transform 0.3s;
 }
 
-.homepage-dot:hover,
 .homepage-dot.active {
   background-color: rgb(254, 155, 34);
   transform: scale(1.2);
@@ -150,7 +150,7 @@ a:hover {
     bottom: 0;
     border-radius: 0;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.87);
   }
 
   .homepage-overlay h1 {
@@ -187,7 +187,7 @@ a:hover {
 @media screen and (min-width: 376px) and (max-width: 426px) {
   .homepage-overlay {
     width: 91%;
-    height: 150px;
+    height: 200px;
     left: 0;
     transform: translate(0, 0);
     backdrop-filter: blur(0px);
@@ -195,7 +195,7 @@ a:hover {
     bottom: 0;
     border-radius: 0;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.87);
   }
 
   .homepage-overlay h1 {
@@ -281,7 +281,7 @@ a:hover {
 @media screen and (min-width: 1025px) and (max-width: 1441px) {
   .homepage-overlay {
     width: 800px;
-    top: 60dvh;
+    top: 56dvh;
   }
 
   .homepage-overlay img {

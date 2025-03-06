@@ -3,9 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "../assets/css/applyjob.css";
 
+// ApplyJob component to handle job application process
 const ApplyJob = () => {
+  // Extract job ID from URL parameters
   const { jobId } = useParams();
   const navigate = useNavigate();
+  // State variables
   const [job, setJob] = useState(null);
   const [surveyQuestions, setSurveyQuestions] = useState([]);
   const [attachmentsRequired, setAttachmentsRequired] = useState([]);
@@ -13,9 +16,11 @@ const ApplyJob = () => {
   const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // useEffect hook to fetch job details on component mount
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
+        // Check if student is logged in
         const email = localStorage.getItem("email");
         if (!email) {
           alert("Please log in as a student to apply.");
@@ -23,7 +28,7 @@ const ApplyJob = () => {
           return;
         }
 
-        // Retrieve job details + attachments + survey questions
+        // Retrieve job details, attachments, and survey questions from API
         const response = await fetch(
           "/api/manage-job-application.php?action=getJobDetails",
           {
@@ -35,6 +40,7 @@ const ApplyJob = () => {
 
         const data = await response.json();
         if (data.success && data.job) {
+          // Update state with fetched data
           setJob(data.job);
           setSurveyQuestions(data.surveyQuestions || []);
           setAttachmentsRequired(data.attachments || []);
@@ -116,6 +122,7 @@ const ApplyJob = () => {
     }
   };
 
+  // Loading state
   if (loading) {
     return (
       <>
@@ -127,6 +134,7 @@ const ApplyJob = () => {
     );
   }
 
+  // Job not found or error occurred
   if (!job) {
     return (
       <>
@@ -138,6 +146,7 @@ const ApplyJob = () => {
     );
   }
 
+  // Render the application form
   return (
     <>
       <Navbar />
@@ -153,6 +162,7 @@ const ApplyJob = () => {
           <strong>Pay:</strong> {job.pay}
         </p>
 
+        {/* Application Form */}
         <form onSubmit={handleSubmitApplication} encType="multipart/form-data">
           {/* Survey Questions */}
           {surveyQuestions.length > 0 && (
@@ -196,6 +206,7 @@ const ApplyJob = () => {
             </>
           )}
 
+          {/* Submit Button */}
           <button type="submit" className="applyjob-submitButton">
             Submit Application
           </button>

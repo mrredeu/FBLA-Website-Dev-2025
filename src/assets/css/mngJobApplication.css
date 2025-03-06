@@ -42,7 +42,7 @@
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: rgb(254, 155, 34);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -59,7 +59,7 @@
 }
 
 .view-applications-btn:hover {
-  background-color: #0056b3;
+  background-color: rgb(226, 138, 30);
 }
 
 .delete-job-btn:hover {

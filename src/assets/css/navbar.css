@@ -1,3 +1,4 @@
+/* General body and html styles */
 body,
 html {
   margin: 0;
@@ -6,27 +7,30 @@ html {
   color: #333;
 }
 
+/* Header Styles */
 header {
   background: black;
   color: rgb(254, 155, 34);
   padding: 0;
 }
 
+/* Top Bar Styles */
 .navbar-top-bar {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
   margin: 0px 200px;
   padding: 17px 10px;
 }
 
+/* Academy Name Styles */
 .navbar-top-bar .navbar-academy-name {
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
+/* Contact Info Styles */
 .navbar-top-bar .navbar-contact-info {
   display: flex;
   align-items: center;
@@ -34,7 +38,6 @@ header {
 
 .navbar-top-bar .navbar-contact-info span {
   margin-right: 30px;
-  font-size: 16px;
   font-weight: 700;
   transition: color 0.2s ease;
 }
@@ -43,6 +46,7 @@ header {
   color: white;
 }
 
+/* Social Links Styles */
 .navbar-top-bar .navbar-social-links a {
   color: rgb(254, 155, 34);
   font-size: 20px;
@@ -56,11 +60,13 @@ header {
   transform: scale(1.1);
 }
 
+/* Logo Styles */
 .navbar-logo img {
   width: 150px;
   vertical-align: middle;
 }
 
+/* Real Navbar Styles */
 .navbar-real {
   display: flex;
   align-items: center;
@@ -87,6 +93,7 @@ header {
   width: 125px;
 }
 
+/* Unordered List Styles */
 .navbar-real ul {
   list-style: none;
   display: flex;
@@ -99,6 +106,7 @@ header {
   margin: auto 20px;
 }
 
+/* Link and Button Styles */
 .navbar-real ul li a,
 .navbar-login-btn,
 .navbar-logout-btn {
@@ -118,6 +126,10 @@ header {
 .navbar-logout-btn:hover {
   color: rgb(254, 155, 34);
   background-color: white;
+}
+
+.navbar-login-btn {
+  margin-right: 5vw;
 }
 
 /* Login Box Styling */
@@ -140,34 +152,24 @@ header {
 
 /* Visible state */
 .navbar-login-box.visible {
-  display: block; /* Make it visible */
-  opacity: 1; /* Fully opaque */
-  transform: translateY(0); /* Reset upward movement */
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.navbar-real ul li a,
-.navbar-login-btn,
-.navbar-logout-btn {
-  text-decoration: none;
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  background: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
+/* Active Button Styles */
 .navbar-login-btn.active,
 .navbar-logout-btn.active {
   color: rgb(254, 155, 34);
 }
 
+/* Box Content Styles */
 .navbar-box-content {
   padding: 10px;
   text-align: center;
 }
 
+/* Form Input Styles */
 .navbar-form input {
   width: 90%;
   padding: 10px;
@@ -176,20 +178,23 @@ header {
   border-radius: 5px;
 }
 
+/* Form Button Styles */
 .navbar-form button {
   padding: 10px 20px;
   background: rgb(254, 155, 34);
   border: none;
-  color: black;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
 }
 
+/* Error Message Styles */
 .navbar-error {
   color: red;
 }
 
+/* Form Paragraph Styles */
 .navbar-form p {
   margin: 10px 0px 0px 0px;
 }
@@ -218,9 +223,9 @@ header {
   position: relative;
   display: block;
   width: 100%;
-  background: #fff;
-  padding: 0; /* vertical padding only */
-  border-radius: 0; /* no rounding */
+  background: white;
+  padding: 0;
+  border-radius: 0;
 }
 
 .hamburger-menu ul {
@@ -228,7 +233,6 @@ header {
   padding: 0;
   margin: 0;
   text-align: center;
-  background-color: rgba(221, 221, 221, 0.2);
 }
 
 /* Each list item becomes full-width and displayed in its own row */
@@ -240,7 +244,11 @@ header {
 }
 
 .hamburger-menu ul li:last-child {
-  border-bottom: none;
+  border-bottom: 2px solid #ddd;
+}
+
+.hamburger-menu ul li:first-child {
+  border-top: 2px solid #ddd;
 }
 
 /* Ensure links and buttons take full width */
@@ -416,6 +424,10 @@ header {
   .navbar-top-bar .navbar-social-links a {
     font-size: 1.5vmax;
   }
+
+  .navbar-login-btn {
+    margin-right: 8vw;
+  }
 }
 
 /* Media Query for screens between 1024px and 1440px */
@@ -433,7 +445,11 @@ header {
   }
 
   .navbar-container ul li {
-    margin: auto 40px;
+    margin: auto 20px;
+  }
+
+  .navbar-login-btn {
+    margin-right: 5vw;
   }
 }
 
@@ -452,6 +468,10 @@ header {
   }
 
   .navbar-container ul li {
-    margin: auto 40px;
+    margin: auto 30px;
+  }
+
+  .navbar-login-btn {
+    margin-right: 6vw;
   }
 }

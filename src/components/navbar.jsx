@@ -219,14 +219,16 @@ const Navbar = () => {
                 </>
               )}
               {/* Hamburger menu button always in nav */}
-              <li>
-                <button
-                  className="hamburger-btn"
-                  onClick={() => setHamburgerOpen(!hamburgerOpen)}
-                >
-                  <i className="fa-solid fa-bars"></i>
-                </button>
-              </li>
+              {isMobile && (
+                <li>
+                  <button
+                    className="hamburger-btn"
+                    onClick={() => setHamburgerOpen(!hamburgerOpen)}
+                  >
+                    <i className="fa-solid fa-bars"></i>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </nav>

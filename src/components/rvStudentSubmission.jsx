@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
+import styles from "../assets/css/rvStudentSubmission.module.css";
 
 const JobSubmissionDetails = () => {
   const { applicationId } = useParams();
@@ -13,7 +14,7 @@ const JobSubmissionDetails = () => {
     const employerEmail = localStorage.getItem("email");
     if (!employerEmail) {
       alert("Please log in as an employer.");
-      navigate("/login");
+      navigate("/login-mobile");
       return;
     }
 
@@ -59,49 +60,39 @@ const JobSubmissionDetails = () => {
   return (
     <>
       <Navbar />
-      <div style={{ padding: "20px" }}>
-        <h1>Submission Details</h1>
-        <p>
+      <div className={styles.submissionDetailsContainer}>
+        <h1 className={styles.submissionDetailsTitle}>Submission Details</h1>
+        <p className={styles.submissionDetailsText}>
           <strong>Job Position:</strong> {jobTitle}
         </p>
-        <p>
+        <p className={styles.submissionDetailsText}>
           <strong>Student Name:</strong> {studentName}
         </p>
-        <p>
+        <p className={styles.submissionDetailsText}>
           <strong>Student Email:</strong> {studentEmail}
         </p>
-        <p>
+        <p className={styles.submissionDetailsText}>
           <strong>Submitted At:</strong> {created_at}
         </p>
 
-        <h2>Survey Answers</h2>
+        <h2 className={styles.submissionDetailsSubtitle}>Survey Answers</h2>
         {answers && answers.length > 0 ? (
-          <table style={{ borderCollapse: "collapse", width: "100%" }}>
+          <table className={styles.submissionDetailsTable}>
             <thead>
               <tr>
-                <th
-                  style={{ borderBottom: "1px solid #ccc", textAlign: "left" }}
-                >
+                <th className={styles.submissionDetailsTableHeader}>
                   Question
                 </th>
-                <th
-                  style={{ borderBottom: "1px solid #ccc", textAlign: "left" }}
-                >
-                  Answer
-                </th>
+                <th className={styles.submissionDetailsTableHeader}>Answer</th>
               </tr>
             </thead>
             <tbody>
               {answers.map((ans) => (
                 <tr key={ans.question_id}>
-                  <td
-                    style={{ padding: "8px", borderBottom: "1px solid #eee" }}
-                  >
+                  <td className={styles.submissionDetailsTableCell}>
                     {ans.question_text}
                   </td>
-                  <td
-                    style={{ padding: "8px", borderBottom: "1px solid #eee" }}
-                  >
+                  <td className={styles.submissionDetailsTableCell}>
                     {ans.answer_text}
                   </td>
                 </tr>
@@ -109,18 +100,19 @@ const JobSubmissionDetails = () => {
             </tbody>
           </table>
         ) : (
-          <p>No answers recorded.</p>
+          <p className={styles.submissionDetailsText}>No answers recorded.</p>
         )}
 
-        <h2>Attachments</h2>
+        <h2 className={styles.submissionDetailsSubtitle}>Attachments</h2>
         {attachments && attachments.length > 0 ? (
-          <ul>
+          <ul className={styles.submissionDetailsList}>
             {attachments.map((file) => (
-              <li key={file.id}>
+              <li key={file.id} className={styles.submissionDetailsListItem}>
                 <a
-                  href={`/uploads/${file.saved_path}`}
+                  href={`/api/uploads/${file.saved_path}`}
                   target="_blank"
                   rel="noreferrer"
+                  className={styles.submissionDetailsLink}
                 >
                   {file.original_filename}
                 </a>
@@ -128,10 +120,15 @@ const JobSubmissionDetails = () => {
             ))}
           </ul>
         ) : (
-          <p>No attachments.</p>
+          <p className={styles.submissionDetailsText}>No attachments.</p>
         )}
 
-        <button onClick={() => navigate(-1)}>Back to Submissions</button>
+        <button
+          className={styles.submissionDetailsButton}
+          onClick={() => navigate(-1)}
+        >
+          Back to Submissions
+        </button>
       </div>
     </>
   );

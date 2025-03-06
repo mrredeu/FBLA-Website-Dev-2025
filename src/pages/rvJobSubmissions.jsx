@@ -51,7 +51,7 @@ const JobSubmissionsList = () => {
       <div style={{ padding: "20px" }}>
         <h1>Job Submissions</h1>
         {submissions.length === 0 ? (
-          <p>No submissions found.</p>
+          <p>No submissions submitted yet.</p>
         ) : (
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>

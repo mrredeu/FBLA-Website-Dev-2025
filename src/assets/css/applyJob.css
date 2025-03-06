@@ -5,7 +5,7 @@
   max-width: 700px;
   margin: 3rem auto;
   padding: 1rem;
-  background-color: #f9f9f9; /* Light background to distinguish form area */
+  background-color: white;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -35,7 +35,7 @@
 
 /* The textarea for answers */
 .applyjob-question textarea {
-  width: 100%;
+  width: 96%;
   padding: 0.75rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -45,8 +45,8 @@
 
 /* Submit button */
 .applyjob-submitButton {
-  display: inline-block;
-  background-color: #3498db; /* Primary button color */
+  display: block;
+  background-color: rgb(254, 155, 34);
   color: #fff;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
@@ -54,10 +54,11 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 3dvh auto 0 auto;
 }
 
 .applyjob-submitButton:hover {
-  background-color: #2980b9; /* Darken on hover */
+  background-color: rgb(226, 138, 30);
 }
 
 /* Loading message style (optional) */
@@ -65,4 +66,8 @@
   font-size: 1.25rem;
   text-align: center;
   margin: 2rem 0;
+}
+
+.applyjob-attachment input {
+  width: 97%;
 }

@@ -25,7 +25,7 @@ const HomePage = () => {
       img: intern3,
       title: "Build Your Future",
       description:
-        "Broaden your horizons, collaborate with leading experts, and gain the real-world experience.",
+        "Broaden your horizons, collaborate with experts, and gain real-world experience.",
       link: "/jobs-list",
     },
   ];

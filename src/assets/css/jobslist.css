@@ -27,7 +27,7 @@
 
 .jobslist-applyButton {
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: rgb(254, 155, 34);
   color: white;
   border: none;
   border-radius: 5px;
@@ -35,7 +35,7 @@
 }
 
 .jobslist-applyButton:hover {
-  background-color: #45a049;
+  background-color: rgb(226, 138, 30);
 }
 
 .jobslist-disabledButton {

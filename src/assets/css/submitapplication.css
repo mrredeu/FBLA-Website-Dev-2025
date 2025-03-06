@@ -11,6 +11,11 @@
   text-align: center;
 }
 
+.submitapplication-container form input,
+.submitapplication-container form textarea {
+  width: 95%;
+}
+
 label {
   font-weight: bold;
 }
@@ -24,18 +29,18 @@ textarea {
   border-radius: 5px;
 }
 
-button {
+.submitapplication-container form button {
   padding: 10px 20px;
-  margin: 10px;
-  background: #007bff;
+  margin: 10px 10px 10px 0;
+  background: rgb(254, 155, 34);
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  background: #0056b3;
+.submitapplication-container form button:hover {
+  background: rgb(226, 138, 30);
 }
 
 .remove-button {
@@ -44,4 +49,13 @@ button:hover {
 
 .remove-button:hover {
   background: #c82333;
+}
+
+.back-btn {
+  background: rgb(254, 155, 34);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  width: 100px;
 }
