@@ -37,7 +37,7 @@
   margin-top: 20px;
   padding: 10px 20px;
   background-color: rgb(254, 155, 34);
-  color: black;
+  color: white;
   text-decoration: none;
   border-radius: 5px;
   border: 0px;
@@ -46,7 +46,6 @@
 }
 
 .saccount-card button:hover {
-  color: white;
   background-color: rgb(254, 155, 34);
 }
 

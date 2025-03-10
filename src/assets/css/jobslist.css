@@ -17,6 +17,12 @@
   margin-bottom: 15px;
   border-radius: 8px;
   background-color: #fefefe;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jobslist-jobListing:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .jobslist-jobListing h2 {
@@ -32,10 +38,12 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .jobslist-applyButton:hover {
   background-color: rgb(226, 138, 30);
+  transform: scale(1.05);
 }
 
 .jobslist-disabledButton {

@@ -176,9 +176,6 @@ const Navbar = () => {
               {session.role === "employer" && (
                 <>
                   <li>
-                    <a href="/submit-job-application">Create Application</a>
-                  </li>
-                  <li>
                     <a href="/manage-job-applications">Manage Applications</a>
                   </li>
                   <li>
@@ -225,7 +222,11 @@ const Navbar = () => {
                     className="hamburger-btn"
                     onClick={() => setHamburgerOpen(!hamburgerOpen)}
                   >
-                    <i className="fa-solid fa-bars"></i>
+                    <i
+                      className={
+                        hamburgerOpen ? "fa-solid fa-x" : "fa-solid fa-bars"
+                      }
+                    ></i>
                   </button>
                 </li>
               )}
@@ -271,14 +272,6 @@ const Navbar = () => {
               )}
               {session.role === "employer" && (
                 <>
-                  <li>
-                    <a
-                      href="/submit-job-application"
-                      onClick={() => setHamburgerOpen(false)}
-                    >
-                      Create Application
-                    </a>
-                  </li>
                   <li>
                     <a
                       href="/manage-job-applications"

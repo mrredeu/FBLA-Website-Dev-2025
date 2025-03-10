@@ -9,7 +9,6 @@ $action = $_GET['action'] ?? '';
 
 try {
     if ($action === 'listByEmployer') {
-        // Example: GET /job-submissions.php?action=listByEmployer&email=employer@example.com
         $employerEmail = $_GET['email'] ?? '';
 
         if (empty($employerEmail)) {
@@ -116,6 +115,24 @@ try {
             "attachments"   => $attachments
         ];
 
+        echo json_encode($response);
+        exit;
+    } elseif ($action === 'delete') {
+        $applicationId = $_GET['applicationId'] ?? '';
+        if (empty($applicationId)) {
+            $response["message"] = "Missing application ID.";
+            echo json_encode($response);
+            exit;
+        }
+        $sqlDelete = "DELETE FROM job_applications WHERE id = :appId";
+        $stmtDelete = $pdo->prepare($sqlDelete);
+        $stmtDelete->execute([':appId' => $applicationId]);
+        if ($stmtDelete->rowCount() > 0) {
+            $response["success"] = true;
+            $response["message"] = "Submission deleted successfully.";
+        } else {
+            $response["message"] = "Failed to delete submission.";
+        }
         echo json_encode($response);
         exit;
     } else {

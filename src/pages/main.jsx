@@ -6,7 +6,7 @@ import Register from "/src/pages/register.jsx";
 import SAccount from "/src/components/infoBox.jsx";
 import RVAccount from "/src/pages/mngAccounts.jsx";
 import JobsList from "/src/pages/jobsList.jsx";
-import CApp from "/src/pages/sJob.jsx";
+import CApp from "/src/pages/sJobApplication.jsx";
 import RVJobs from "/src/pages/mngJobs.jsx";
 import RVJobDetails from "/src/pages/rvJobDetails.jsx";
 import ManageJobApplications from "/src/pages/mngJobApplication.jsx";

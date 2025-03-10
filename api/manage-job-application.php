@@ -134,10 +134,8 @@ try {
             $job = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($job) {
-                // Fetch survey questions related to this job
-                $stmt = $pdo->prepare("SELECT id, question_text
-                                        FROM survey_questions
-                                        WHERE job_id = ?");
+                // Fetch survey questions related to this job, now including character_limit
+                $stmt = $pdo->prepare("SELECT id, question_text, character_limit FROM survey_questions WHERE job_id = ?");
                 $stmt->execute([$jobId]);
                 $surveyQuestions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -166,9 +164,9 @@ try {
             $pay        = $input['pay'] ?? '';
 
             // Arrays for new questions & attachments
-            $questions  = $input['questions'] ?? [];         // e.g. array of question strings
-            $charLimits = $input['character_limit'] ?? [];   // e.g. array of character limits
-            $attachments = $input['attachments'] ?? [];       // e.g. array of attachment titles
+            $questions  = $input['questions'] ?? [];
+            $charLimits = $input['character_limit'] ?? [];
+            $attachments = $input['attachments'] ?? [];
 
             if (!$jobId) {
                 $response["message"] = "Job ID is required to update a job.";

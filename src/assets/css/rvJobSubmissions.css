@@ -1,0 +1,98 @@
+/* Container */
+.rv-job-submission-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 2% auto 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.rv-job-submission-title {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Table */
+.rv-job-submission-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem; /* Adds spacing below the table */
+}
+
+/* Table Header */
+.rv-job-submission-table thead {
+  background: linear-gradient(90deg, #fff 0%, #f7f7f7 100%);
+}
+
+.rv-job-submission-table th,
+.rv-job-submission-table td {
+  padding: 14px 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.rv-job-submission-table th {
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  border-bottom: 2px solid #eee;
+}
+
+/* Table Row Hover Effect */
+.rv-job-submission-table tbody tr {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.rv-job-submission-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Action Buttons Container */
+.rv-job-submission-actions {
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Buttons */
+.rv-job-submission-button,
+.rv-job-submission-delete-button {
+  font-size: 1rem;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Review Button */
+.rv-job-submission-button {
+  background-color: rgb(254, 155, 34);
+}
+
+.rv-job-submission-button:hover {
+  background-color: rgb(230, 140, 30);
+  transform: scale(1.05);
+}
+
+/* Delete Button */
+.rv-job-submission-delete-button {
+  background-color: #e62e2e;
+}
+
+.rv-job-submission-delete-button:hover {
+  background-color: #c72828;
+  transform: scale(1.05);
+}

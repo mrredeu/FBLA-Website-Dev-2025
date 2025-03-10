@@ -7,7 +7,6 @@ const ReviewJobDetails = () => {
   const navigate = useNavigate();
 
   if (!state?.job) {
-    // Redirect back if no job data is found
     navigate("/review-job-listings");
     return null;
   }

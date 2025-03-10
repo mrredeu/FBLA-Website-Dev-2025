@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
-import "../assets/css/submitapplication.css";
+import "../assets/css/sJobApplication.css";
 
 const LOCAL_STORAGE_KEY = "jobFormData";
 
@@ -34,6 +34,15 @@ const SubmitApplication = () => {
       JSON.stringify({ questions, attachments, formFields })
     );
   }, [questions, attachments, formFields]);
+
+  // New function to clear state and localStorage then navigate back
+  const handleBack = () => {
+    setFormFields({ title: "", location: "", description: "", pay: "" });
+    setQuestions([{ text: "", charLimit: "" }]);
+    setAttachments([{ title: "" }]);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    navigate(-1);
+  };
 
   const handleAddQuestion = () => {
     setQuestions([...questions, { text: "", charLimit: "" }]);
@@ -107,7 +116,10 @@ const SubmitApplication = () => {
     <>
       <Navbar />
       <div className="submitapplication-container">
-        <h1>Create Job Listing</h1>
+        <button className="back-btn" onClick={handleBack}>
+          Back
+        </button>
+        <h1>Create Job Application</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Job Title:</label>
           <input

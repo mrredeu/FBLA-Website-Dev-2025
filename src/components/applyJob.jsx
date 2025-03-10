@@ -111,7 +111,6 @@ const ApplyJob = () => {
       const result = await response.json();
       if (result.success) {
         alert("Application submitted successfully!");
-        // Automatically redirect to jobs page
         navigate("/jobs-list");
       } else {
         alert(result.message || "Failed to submit application.");
@@ -170,7 +169,11 @@ const ApplyJob = () => {
               <h2>Survey Questions</h2>
               {surveyQuestions.map((question) => (
                 <div key={question.id} className="applyjob-question">
-                  <label>{question.question_text}</label>
+                  <label>
+                    {question.question_text} (Limit:{" "}
+                    {(answers[question.id] || "").length}/
+                    {question.character_limit})
+                  </label>
                   <textarea
                     value={answers[question.id] || ""}
                     onChange={(e) =>
@@ -179,6 +182,7 @@ const ApplyJob = () => {
                     placeholder="Your answer..."
                     rows={3}
                     required
+                    maxLength={question.character_limit}
                   />
                 </div>
               ))}
@@ -200,6 +204,7 @@ const ApplyJob = () => {
                     onChange={(e) =>
                       handleFileChange(att.id, e.target.files[0])
                     }
+                    required
                   />
                 </div>
               ))}

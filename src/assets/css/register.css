@@ -41,17 +41,13 @@
 
 .register button {
   background-color: rgb(254, 155, 34);
-  color: black;
+  color: white;
   padding: 10px;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
   transition: color 0.3s;
-}
-
-.register button:hover {
-  color: white;
 }
 
 .register p {

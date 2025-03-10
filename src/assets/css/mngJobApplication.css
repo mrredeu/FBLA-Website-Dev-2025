@@ -1,67 +1,122 @@
+/* Container for the Manage Jobs page */
 .manage-jobs-container {
   max-width: 800px;
-  margin: 20px auto;
+  margin: 40px auto;
   padding: 20px;
   background-color: #fdfdfd;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Optional heading styling */
+.manage-jobs-container h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* "Create Application" button */
+.create-application-btn {
+  display: inline-block;
+  background-color: rgb(254, 155, 34);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.create-application-btn:hover {
+  background-color: rgb(226, 138, 30);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+/* Jobs list container */
 .jobs-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 20px;
 }
 
+/* Individual job card styling */
 .job-card {
   background-color: #fff;
-  padding: 15px;
+  padding: 16px 20px;
   border: 1px solid #ddd;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Subtle hover effect on each card */
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Title of the job card */
 .job-card h2 {
-  margin: 0;
+  margin: 0 0 8px;
   font-size: 18px;
   color: #333;
 }
 
+/* Paragraphs for location, description, pay, etc. */
 .job-card p {
-  margin: 8px 0;
+  margin: 6px 0;
   font-size: 14px;
   color: #555;
 }
 
+/* Container for action buttons */
 .job-card-actions {
-  margin-top: 10px;
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
+/* View Applications button */
 .view-applications-btn {
-  margin-right: 10px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border: none;
   border-radius: 4px;
   background-color: rgb(254, 155, 34);
-  color: white;
+  color: #fff;
   font-size: 14px;
   cursor: pointer;
-}
-
-.delete-job-btn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f44336;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .view-applications-btn:hover {
   background-color: rgb(226, 138, 30);
+  transform: scale(1.05);
+}
+
+/* Delete Job button */
+.delete-job-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f44336;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .delete-job-btn:hover {
   background-color: #c0392b;
+  transform: scale(1.05);
 }

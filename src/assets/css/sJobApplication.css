@@ -14,19 +14,14 @@
 .submitapplication-container form input,
 .submitapplication-container form textarea {
   width: 95%;
-}
-
-label {
-  font-weight: bold;
-}
-
-input,
-textarea {
-  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.submitapplication-container label {
+  font-weight: bold;
 }
 
 .submitapplication-container form button {

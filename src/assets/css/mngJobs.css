@@ -34,6 +34,17 @@
   color: #444;
 }
 
+.rvjobs-card button {
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: rgb(254, 155, 34);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  margin: 0;
+}
+
 .rvjobs-actions button {
   margin-right: 10px;
   padding: 8px 12px;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import "../assets/css/submitapplication.css";
+import "../assets/css/sJobApplication.css";
 
 const LOCAL_STORAGE_KEY = "jobFormData";
 
@@ -112,6 +112,15 @@ const UpdateJob = ({ jobId, onBack }) => {
     setAttachments(updatedAttachments);
   };
 
+  // New function to clear storage and reset state
+  const handleBack = () => {
+    setFormFields({ title: "", location: "", description: "", pay: "" });
+    setQuestions([]);
+    setAttachments([]);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    onBack && onBack();
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -147,8 +156,8 @@ const UpdateJob = ({ jobId, onBack }) => {
       const result = await response.json();
       if (result.success) {
         alert("Job updated successfully!");
-        localStorage.removeItem(LOCAL_STORAGE_KEY);
-        onBack && onBack();
+        // Clear state and localStorage before going back
+        handleBack();
       } else {
         alert(result.message || "Failed to update job.");
       }
@@ -161,10 +170,10 @@ const UpdateJob = ({ jobId, onBack }) => {
     <>
       <Navbar />
       <div className="submitapplication-container">
-        <button className="back-btn" onClick={onBack}>
+        <button className="back-btn" onClick={handleBack}>
           Back
         </button>
-        <h1>Update Job Listing</h1>
+        <h1>Update Job Application</h1>
         <form onSubmit={handleUpdate}>
           <label htmlFor="title">Job Title:</label>
           <input

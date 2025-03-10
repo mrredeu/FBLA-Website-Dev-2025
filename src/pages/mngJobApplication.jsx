@@ -77,6 +77,14 @@ const ManageJobApplications = () => {
       <Navbar />
       <div className="manage-jobs-container">
         <h1>Manage Job Applications</h1>
+        <div className="manage-jobs-actions">
+          <button
+            className="create-application-btn"
+            onClick={() => (window.location.href = "/submit-job-application")}
+          >
+            Create Application
+          </button>
+        </div>
         {jobs.length > 0 ? (
           <div className="jobs-list">
             {jobs.map((job) => (
