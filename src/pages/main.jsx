@@ -49,7 +49,7 @@ initializeDatabase().then(() => {
           <Route path="/manage-accounts" element={<RVAccount />} />
           <Route path="/jobs-list" element={<JobsList />} />
           <Route path="/submit-job-application" element={<CApp />} />
-          <Route path="/review-job-listings" element={<RVJobs />} />
+          <Route path="/review-job-postings" element={<RVJobs />} />
           <Route path="/review-job-details" element={<RVJobDetails />} />
           <Route path="/apply/:jobId" element={<ApplyJob />} />
           <Route path="/job-submissions" element={<RVJobSubmissions />} />

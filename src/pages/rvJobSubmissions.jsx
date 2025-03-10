@@ -72,7 +72,7 @@ const JobSubmissionsList = () => {
     <>
       <Navbar />
       <div className="rv-job-submission-container">
-        <h1 className="rv-job-submission-title">Job Submissions</h1>
+        <h1 className="rv-job-submission-title">Review Job Submissions</h1>
         {submissions.length === 0 ? (
           <p>No submissions submitted yet.</p>
         ) : (

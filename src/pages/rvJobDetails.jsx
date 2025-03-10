@@ -7,7 +7,7 @@ const ReviewJobDetails = () => {
   const navigate = useNavigate();
 
   if (!state?.job) {
-    navigate("/review-job-listings");
+    navigate("/review-job-postings");
     return null;
   }
 
@@ -23,7 +23,7 @@ const ReviewJobDetails = () => {
       const result = await response.json();
       if (result.success) {
         alert("Job approved successfully!");
-        navigate("/review-job-listings");
+        navigate("/review-job-postings");
       } else {
         alert(result.message || "Failed to approve the job.");
       }
@@ -42,7 +42,7 @@ const ReviewJobDetails = () => {
       const result = await response.json();
       if (result.success) {
         alert("Job denied successfully!");
-        navigate("/review-jobs"); // Redirect back after denial
+        navigate("/review-jobs");
       } else {
         alert(result.message || "Failed to deny the job.");
       }
@@ -54,57 +54,58 @@ const ReviewJobDetails = () => {
   return (
     <>
       <Navbar />
-      <div className="rjd-container">
-        <div className="rjd-card">
-          <h2 className="rjd-job-title">Company: {job.title}</h2>
-          <p>
-            <strong>Location:</strong> {job.location}
-          </p>
-          <p>
-            <strong>Description:</strong> {job.description}
-          </p>
-          <p>
-            <strong>Pay:</strong> {job.pay}
-          </p>
-          <p>
-            <strong>Poster:</strong> {job.poster_email}
-          </p>
-          <div className="rjd-section">
-            <h3 className="rjd-section-title">Survey Questions</h3>
-            {job.questions.length > 0 ? (
-              <ul className="rjd-list">
-                {job.questions.map((q, index) => (
-                  <li key={index} className="rjd-list-item">
-                    {q.question_text} (Limit: {q.character_limit || "No limit"})
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="rjd-no-data">No survey questions provided.</p>
-            )}
-          </div>
-          <div className="rjd-section">
-            <h3 className="rjd-section-title">Attachments</h3>
-            {job.attachments.length > 0 ? (
-              <ul className="rjd-list">
-                {job.attachments.map((a, index) => (
-                  <li key={index} className="rjd-list-item">
-                    {a.title}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="rjd-no-data">No attachments provided.</p>
-            )}
-          </div>
-          <div className="rjd-actions">
-            <button onClick={handleApprove} className="rjd-approve-btn">
-              Approve
-            </button>
-            <button onClick={handleDeny} className="rjd-deny-btn">
-              Deny
-            </button>
-          </div>
+      <div className="rjd-card">
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          Back
+        </button>
+        <h2 className="rjd-job-title">Company: {job.title}</h2>
+        <p>
+          <strong>Location:</strong> {job.location}
+        </p>
+        <p>
+          <strong>Description:</strong> {job.description}
+        </p>
+        <p>
+          <strong>Pay:</strong> {job.pay}
+        </p>
+        <p>
+          <strong>Poster:</strong> {job.poster_email}
+        </p>
+        <div className="rjd-section">
+          <h3 className="rjd-section-title">Survey Questions</h3>
+          {job.questions.length > 0 ? (
+            <ul className="rjd-list">
+              {job.questions.map((q, index) => (
+                <li key={index} className="rjd-list-item">
+                  {q.question_text} (Limit: {q.character_limit || "No limit"})
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="rjd-no-data">No survey questions provided.</p>
+          )}
+        </div>
+        <div className="rjd-section">
+          <h3 className="rjd-section-title">Attachments</h3>
+          {job.attachments.length > 0 ? (
+            <ul className="rjd-list">
+              {job.attachments.map((a, index) => (
+                <li key={index} className="rjd-list-item">
+                  {a.title}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="rjd-no-data">No attachments provided.</p>
+          )}
+        </div>
+        <div className="rjd-actions">
+          <button onClick={handleApprove} className="rjd-approve-btn">
+            Approve
+          </button>
+          <button onClick={handleDeny} className="rjd-deny-btn">
+            Deny
+          </button>
         </div>
       </div>
     </>

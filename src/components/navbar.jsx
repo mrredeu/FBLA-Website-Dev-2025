@@ -169,7 +169,7 @@ const Navbar = () => {
                     <a href="/manage-accounts">Manage Accounts</a>
                   </li>
                   <li>
-                    <a href="/review-job-listings">Review Job Listings</a>
+                    <a href="/review-job-postings">Review Job Postings</a>
                   </li>
                 </>
               )}
@@ -262,7 +262,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <a
-                      href="/review-job-listings"
+                      href="/review-job-postings"
                       onClick={() => setHamburgerOpen(false)}
                     >
                       Review Job Listings

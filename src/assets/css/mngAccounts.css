@@ -52,6 +52,12 @@
   padding: 20px;
   margin-bottom: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.manage-account:hover {
+  transform: translateY(-2px);
 }
 
 .manage-account h2 {
@@ -83,6 +89,7 @@
 
 .manage-actions .approve:hover {
   background-color: #45a049;
+  transform: scale(1.02);
 }
 
 .manage-actions .deny {
@@ -92,6 +99,7 @@
 
 .manage-actions .deny:hover {
   background-color: #e53935;
+  transform: scale(1.02);
 }
 
 .manage-actions .delete {
@@ -101,4 +109,5 @@
 
 .manage-actions .delete:hover {
   background-color: #e68900;
+  transform: scale(1.02);
 }

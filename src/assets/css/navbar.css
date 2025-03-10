@@ -127,6 +127,7 @@ header {
 .navbar-logout-btn:hover {
   color: rgb(254, 155, 34);
   background-color: white;
+  transform: scale(1.01);
 }
 
 .navbar-login-btn {
@@ -136,7 +137,7 @@ header {
 /* Login Box Styling */
 /* Default hidden state */
 .navbar-login-box {
-  display: none; /* Start hidden */
+  display: none;
   position: absolute;
   margin-top: 50px;
   top: 100px;
@@ -146,9 +147,9 @@ header {
   width: 350px;
   border-radius: 8px;
   z-index: 1000;
-  opacity: 0; /* Fully transparent */
-  transform: translateY(-10px); /* Slide up */
-  transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth transitions */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 /* Visible state */
@@ -162,6 +163,16 @@ header {
 .navbar-login-btn.active,
 .navbar-logout-btn.active {
   color: rgb(254, 155, 34);
+}
+
+#login-form button {
+  background-color: rgb(254, 155, 34);
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#login-form button:hover {
+  background-color: rgb(226, 138, 30);
+  transform: scale(1.05);
 }
 
 /* Box Content Styles */
@@ -262,6 +273,7 @@ header {
   padding: 0;
   font-size: 16px;
   font-weight: normal;
+  text-decoration: none;
 }
 
 /* Media Query for Mobile */

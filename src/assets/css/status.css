@@ -42,11 +42,12 @@
   border-radius: 5px;
   border: 0px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .saccount-card button:hover {
   background-color: rgb(254, 155, 34);
+  transform: scale(1.05);
 }
 
 .saccount-card .register-button {

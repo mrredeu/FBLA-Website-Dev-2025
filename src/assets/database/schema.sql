@@ -1,3 +1,4 @@
+/* Job Portal Database Schema */
 -- Create the database
 CREATE DATABASE IF NOT EXISTS job_portal;
 

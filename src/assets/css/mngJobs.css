@@ -18,24 +18,25 @@
 
 .rvjobs-card h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #333;
 }
 
 .rvjobs-card p {
   margin: 8px 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #555;
 }
 
 .rvjobs-card h3 {
   margin-top: 15px;
-  font-size: 16px;
+  font-size: 1rem;
   color: #444;
 }
 
 .rvjobs-card button {
-  padding: 6px 12px;
+  padding: 10px 16px;
+  font-size: 1rem;
   cursor: pointer;
   background-color: rgb(254, 155, 34);
   border: none;
@@ -43,54 +44,36 @@
   color: white;
   display: block;
   margin: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
-.rvjobs-actions button {
-  margin-right: 10px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.rvjobs-actions .approve {
-  background-color: #4caf50;
-  color: white;
-}
-
-.rvjobs-actions .deny {
-  background-color: #f44336;
-  color: white;
+.rvjobs-card button:hover {
+  background-color: rgb(226, 138, 30);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
 }
 
 /* Container for the entire component */
-.rjd-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Card for job details */
 .rjd-card {
+  max-width: 800px;
   background-color: #ffffff;
   padding: 20px;
+  margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Title styles */
 .rjd-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #333;
   margin-bottom: 20px;
 }
 
 .rjd-job-title {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #444;
   margin-bottom: 10px;
 }
@@ -114,12 +97,12 @@
 }
 
 .rjd-list-item {
-  font-size: 16px;
+  font-size: 1rem;
   color: #555;
 }
 
 .rjd-no-data {
-  font-size: 16px;
+  font-size: 1rem;
   color: #777;
 }
 
@@ -133,7 +116,7 @@
 .rjd-approve-btn,
 .rjd-deny-btn {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -142,17 +125,23 @@
 .rjd-approve-btn {
   background-color: #4caf50;
   color: white;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
 .rjd-approve-btn:hover {
   background-color: #45a049;
+  transform: scale(1.02);
 }
 
 .rjd-deny-btn {
   background-color: #f44336;
   color: white;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
 .rjd-deny-btn:hover {
   background-color: #e53935;
+  transform: scale(1.02);
 }

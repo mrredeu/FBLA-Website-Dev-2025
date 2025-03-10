@@ -1,5 +1,5 @@
 import Navbar from "./navbar";
-import "../assets/css/saccount.css";
+import "../assets/css/status.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -51,10 +51,10 @@ const Account = () => {
             </>
           ) : statusType === "job-success" ? (
             <>
-              <h1>Your Job Has Been Submitted!</h1>
+              <h1>Your Application Has Been Submitted!</h1>
               <p>
                 Your job application was processed successfully. Please wait for
-                admin to approve your job posting. If you need assistance,
+                admin to approve your job application. If you need assistance,
                 please contact us.
               </p>
             </>

@@ -32,25 +32,36 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .submitapplication-container form button:hover {
   background: rgb(226, 138, 30);
+  transform: scale(1.05);
 }
 
 .remove-button {
   background: #dc3545;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .remove-button:hover {
   background: #c82333;
+  transform: scale(1.02);
 }
 
 .back-btn {
+  font-size: 1rem;
   background: rgb(254, 155, 34);
   padding: 10px 20px;
   border-radius: 5px;
   color: white;
   border: none;
   width: 100px;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  background: rgb(226, 138, 30);
+  transform: scale(1.02);
 }

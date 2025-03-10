@@ -94,7 +94,7 @@
 .submissionDetailsLink {
   color: rgb(254, 155, 34);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 /* Link hover effect */
@@ -112,11 +112,12 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 1.1em;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
   margin-top: 20px;
 }
 
 /* Button hover effect */
 .submissionDetailsButton:hover {
   background-color: rgb(226, 138, 30);
+  transform: scale(1.05);
 }
