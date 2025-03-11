@@ -65,3 +65,19 @@
   background: rgb(226, 138, 30);
   transform: scale(1.02);
 }
+
+.submitapplication-container .submit-button {
+  margin-top: 20px;
+  font-size: 1rem;
+  background: rgb(254, 155, 34);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.submitapplication-container .submit-button:hover {
+  background: rgb(226, 138, 30);
+  transform: scale(1.02);
+}

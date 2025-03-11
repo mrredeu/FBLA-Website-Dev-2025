@@ -100,7 +100,7 @@
 
 .view-applications-btn:hover {
   background-color: rgb(226, 138, 30);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* Delete Job button */
@@ -118,5 +118,5 @@
 
 .delete-job-btn:hover {
   background-color: #c0392b;
-  transform: scale(1.05);
+  transform: scale(1.02);
 }

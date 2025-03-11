@@ -104,13 +104,13 @@ const ManageJobApplications = () => {
                     className="view-applications-btn"
                     onClick={() => handleViewApplications(job.id)}
                   >
-                    View Applications
+                    View Application
                   </button>
                   <button
                     className="delete-job-btn"
                     onClick={() => handleDeleteJob(job.id)}
                   >
-                    Delete Job
+                    Delete Application
                   </button>
                 </div>
               </div>

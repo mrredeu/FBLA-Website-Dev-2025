@@ -54,6 +54,8 @@ const Navbar = () => {
   // Handle login form submission
   const handleLogin = async (event) => {
     event.preventDefault();
+    // Save current URL for redirect after login
+    localStorage.setItem("redirectAfterLogin", window.location.href);
     const formData = new FormData(event.target);
 
     try {
@@ -73,7 +75,11 @@ const Navbar = () => {
           localStorage.setItem("email", data.session.email);
           localStorage.setItem("role", data.session.role);
 
-          window.location.href = "/homepage";
+          // Replace default homepage redirection with dynamic redirect
+          const redirectUrl =
+            localStorage.getItem("redirectAfterLogin") || "/homepage";
+          localStorage.removeItem("redirectAfterLogin");
+          window.location.href = redirectUrl;
         } else {
           console.log(data.error);
           if (data.error === "Account is pending approval.") {
@@ -195,6 +201,10 @@ const Navbar = () => {
                     })}
                     onClick={() => {
                       if (isMobile) {
+                        localStorage.setItem(
+                          "redirectAfterLogin",
+                          window.location.href
+                        );
                         window.location.href = "/login-mobile";
                       }
                     }}

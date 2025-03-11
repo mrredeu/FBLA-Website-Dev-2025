@@ -102,7 +102,7 @@
 .applyjob-attachment input[type="file"]::-webkit-file-upload-button:hover {
   background-color: rgb(226, 138, 30);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* For Firefox and some other modern browsers */
@@ -122,5 +122,5 @@
 .applyjob-attachment input[type="file"]::file-selector-button:hover {
   background-color: rgb(226, 138, 30);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }

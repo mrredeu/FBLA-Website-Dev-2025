@@ -173,7 +173,7 @@ const UpdateJob = ({ jobId, onBack }) => {
         <button className="back-btn" onClick={handleBack}>
           Back
         </button>
-        <h1>Update Job Application</h1>
+        <h1>Job Application</h1>
         <form onSubmit={handleUpdate}>
           <label htmlFor="title">Job Title:</label>
           <input
@@ -286,11 +286,10 @@ const UpdateJob = ({ jobId, onBack }) => {
           <button type="button" onClick={handleAddAttachment}>
             + Add Attachment
           </button>
-
-          <button type="submit" className="submit-button">
-            Update Job
-          </button>
         </form>
+        <button type="submit" className="submit-button">
+          Update Job Application
+        </button>
       </div>
     </>
   );

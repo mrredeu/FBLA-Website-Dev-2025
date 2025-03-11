@@ -236,11 +236,10 @@ const SubmitApplication = () => {
           <button type="button" onClick={handleAddAttachment}>
             + Add Attachment
           </button>
-
-          <button type="submit" className="submit-button">
-            Submit Job
-          </button>
         </form>
+        <button type="submit" className="submit-button">
+          Post Job Application
+        </button>
       </div>
     </>
   );
