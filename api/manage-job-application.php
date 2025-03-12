@@ -23,7 +23,7 @@ try {
             // -----------------------------------
             // FETCH JOB LISTINGS
             // -----------------------------------
-            $stmt = $pdo->prepare("SELECT id, title, location, description, pay
+            $stmt = $pdo->prepare("SELECT id, title, location, description, pay, is_approved
                                    FROM jobs
                                    WHERE poster_email = ?");
             $stmt->execute([$email]);
@@ -59,13 +59,13 @@ try {
                 }
 
                 // Delete files from server
-                $stmt = $pdo->prepare("SELECT file_path FROM attachments WHERE job_id = ?");
+                $stmt = $pdo->prepare("SELECT saved_path FROM attachments WHERE job_id = ?");
                 $stmt->execute([$jobId]);
                 $attachments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($attachments as $attachment) {
-                    if (file_exists($attachment['file_path'])) {
-                        unlink($attachment['file_path']);
+                    if (file_exists($attachment['saved_path'])) {
+                        unlink($attachment['saved_path']);
                     }
                 }
 
@@ -140,7 +140,7 @@ try {
                 $surveyQuestions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Fetch attachments related to this job
-                $stmt = $pdo->prepare("SELECT id, title, file_path
+                $stmt = $pdo->prepare("SELECT id, title
                                         FROM attachments
                                         WHERE job_id = ?");
                 $stmt->execute([$jobId]);
@@ -216,8 +216,8 @@ try {
                 $stmt->execute([$jobId]);
 
                 $stmt = $pdo->prepare("
-                    INSERT INTO attachments (job_id, title, file_path)
-                    VALUES (?, ?, '')
+                    INSERT INTO attachments (job_id, title)
+                    VALUES (?, ?)
                 ");
                 foreach ($attachments as $attTitle) {
                     $stmt->execute([$jobId, $attTitle]);

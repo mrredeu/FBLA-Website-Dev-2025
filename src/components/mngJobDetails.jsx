@@ -156,7 +156,6 @@ const UpdateJob = ({ jobId, onBack }) => {
       const result = await response.json();
       if (result.success) {
         alert("Job updated successfully!");
-        // Clear state and localStorage before going back
         handleBack();
       } else {
         alert(result.message || "Failed to update job.");
@@ -286,10 +285,10 @@ const UpdateJob = ({ jobId, onBack }) => {
           <button type="button" onClick={handleAddAttachment}>
             + Add Attachment
           </button>
+          <button type="submit" className="submit-button">
+            Update Job Application
+          </button>
         </form>
-        <button type="submit" className="submit-button">
-          Update Job Application
-        </button>
       </div>
     </>
   );

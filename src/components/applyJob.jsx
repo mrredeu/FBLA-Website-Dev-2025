@@ -127,6 +127,9 @@ const ApplyJob = () => {
       <>
         <Navbar />
         <div className="applyjob-container">
+          <button onClick={() => navigate(-1)} className="back-button">
+            Back
+          </button>
           <h2>Loading job details...</h2>
         </div>
       </>
@@ -139,6 +142,9 @@ const ApplyJob = () => {
       <>
         <Navbar />
         <div className="applyjob-container">
+          <button onClick={() => navigate(-1)} className="back-button">
+            Back
+          </button>
           <h2>Job not found or an error occurred.</h2>
         </div>
       </>
@@ -150,6 +156,9 @@ const ApplyJob = () => {
     <>
       <Navbar />
       <div className="applyjob-container">
+        <button onClick={() => navigate(-1)} className="back-button">
+          Back
+        </button>
         <h1>Apply for {job.title}</h1>
         <p>
           <strong>Location:</strong> {job.location}

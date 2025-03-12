@@ -38,7 +38,7 @@ try {
                     $email = $user['email'];
                     $subject = "Your Account Has Been Approved!";
                     $body = "
-                        <h1>Welcome to Beehive's Job Portal!</h1>
+                        <h2 style='color:#FE9B22;'>Welcome to Beehive Job Portal!</h2>
                         <p>Hi {$user['full_name']},</p>
                         <p>Thank you for waiting! Your account has been approved, and you now have access to Beehive's Job Portal as an employer.</p>
                         <br>
@@ -58,7 +58,7 @@ try {
                     $email = $user['email'];
                     $subject = "Your Account Has Been Denied";
                     $body = "
-                        <h1>Account Denied</h1>
+                        <h2 style='color:#dc3545;'>Account Denied</h2>
                         <p>Hi {$user['full_name']},</p>
                         <p>We regret to inform you that your account request for Beehive's Job Portal has been denied.</p>
                         <p>If you believe this was a mistake, please contact our administration for further assistance.</p>

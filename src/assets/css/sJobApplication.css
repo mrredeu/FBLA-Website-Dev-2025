@@ -63,7 +63,7 @@
 
 .back-btn:hover {
   background: rgb(226, 138, 30);
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .submitapplication-container .submit-button {
@@ -75,9 +75,18 @@
   color: white;
   border: none;
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  display: block;
 }
 
 .submitapplication-container .submit-button:hover {
   background: rgb(226, 138, 30);
-  transform: scale(1.02);
+  transform: scale(1.05);
+}
+
+.submitapplication-container .remove-button {
+  background-color: #dc3545;
+}
+
+.submitapplication-container .remove-button:hover {
+  background-color: #c82333;
 }

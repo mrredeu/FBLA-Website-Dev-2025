@@ -92,12 +92,14 @@ try {
         // 3) Fetch any file attachments for this application
         $sqlFiles = "
             SELECT
-                f.id,
-                f.original_filename,
-                f.saved_path,
-                f.created_at
-            FROM job_application_files f
-            WHERE f.application_id = :appId
+                jaf.id,
+                a.title,
+                jaf.original_filename,
+                jaf.saved_path,
+                jaf.created_at
+            FROM job_application_files jaf
+            LEFT JOIN attachments a ON jaf.attachment_id = a.id
+            WHERE jaf.application_id = :appId
         ";
         $stmtFiles = $pdo->prepare($sqlFiles);
         $stmtFiles->execute([':appId' => $appId]);

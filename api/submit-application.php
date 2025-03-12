@@ -28,6 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$jobId, $questionText, $charLimit]);
         }
 
+        // Handle attachments insertion if provided
+        if (isset($_POST['attachments'])) {
+            $attachments = $_POST['attachments'];
+            foreach ($attachments as $attachmentTitle) {
+                if (!empty($attachmentTitle)) {
+                    // Updated to match new attachments table schema (no file_path column)
+                    $stmt = $pdo->prepare("INSERT INTO attachments (job_id, title) VALUES (?, ?)");
+                    $stmt->execute([$jobId, $attachmentTitle]);
+                }
+            }
+        }
+
         $pdo->commit();
         echo json_encode(["success" => true]);
     } catch (Exception $e) {

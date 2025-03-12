@@ -175,7 +175,7 @@ const Navbar = () => {
                     <a href="/manage-accounts">Manage Accounts</a>
                   </li>
                   <li>
-                    <a href="/review-job-postings">Review Job Postings</a>
+                    <a href="/review-job-postings">Review Applications</a>
                   </li>
                 </>
               )}

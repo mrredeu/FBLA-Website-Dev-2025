@@ -90,8 +90,13 @@ const SubmitApplication = () => {
     formData.append("username", localStorage.getItem("username"));
 
     questions.forEach((question) => {
-      formData.append(`questions[]`, question.text);
-      formData.append(`character_limit[]`, question.charLimit || 5000);
+      formData.append("questions[]", question.text);
+      formData.append("character_limit[]", question.charLimit || 5000);
+    });
+
+    // Append attachments data
+    attachments.forEach((attachment) => {
+      formData.append("attachments[]", attachment.title);
     });
 
     try {
@@ -126,7 +131,7 @@ const SubmitApplication = () => {
             type="text"
             id="title"
             name="title"
-            placeholder="Job title"
+            placeholder="Job Title - Company Name"
             required
             value={formFields.title}
             onChange={(e) => handleFormFieldChange("title", e.target.value)}
@@ -137,7 +142,7 @@ const SubmitApplication = () => {
             type="text"
             id="location"
             name="location"
-            placeholder="Location: city, state"
+            placeholder="Location: City, State"
             required
             value={formFields.location}
             onChange={(e) => handleFormFieldChange("location", e.target.value)}
@@ -236,10 +241,10 @@ const SubmitApplication = () => {
           <button type="button" onClick={handleAddAttachment}>
             + Add Attachment
           </button>
+          <button type="submit" className="submit-button">
+            Post Job Application
+          </button>
         </form>
-        <button type="submit" className="submit-button">
-          Post Job Application
-        </button>
       </div>
     </>
   );

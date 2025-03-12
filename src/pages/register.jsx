@@ -29,6 +29,13 @@ const Register = () => {
     event.preventDefault();
     const { full_name, email, password, role } = formData;
 
+    // Validate full name format: Two words, each starting with a capital letter and followed by lowercase letters.
+    const fullNameRegex = /^[A-Z][a-z]+( [A-Z][a-z]+)$/;
+    if (!fullNameRegex.test(full_name)) {
+      alert("Please enter a valid full name (e.g., John Doe).");
+      return;
+    }
+
     // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {

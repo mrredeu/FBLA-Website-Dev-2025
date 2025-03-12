@@ -58,7 +58,7 @@ const ReviewJobDetails = () => {
         <button className="back-btn" onClick={() => navigate(-1)}>
           Back
         </button>
-        <h2 className="rjd-job-title">Company: {job.title}</h2>
+        <h2 className="rjd-job-title">Job: {job.title}</h2>
         <p>
           <strong>Location:</strong> {job.location}
         </p>

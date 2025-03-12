@@ -124,3 +124,22 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
 }
+
+.back-button {
+  background-color: rgb(254, 155, 34);
+  border: none;
+  width: 100px;
+  font-size: 1rem;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: rgb(226, 138, 30);
+  transform: scale(1.02);
+}

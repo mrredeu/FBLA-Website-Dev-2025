@@ -82,13 +82,13 @@ try {
             }
 
             $stmtFiles = $pdo->prepare("
-                INSERT INTO job_application_files (application_id, original_filename, saved_path)
-                VALUES (?, ?, ?)
+                INSERT INTO job_application_files (application_id, original_filename, saved_path, attachment_id)
+                VALUES (?, ?, ?, ?)
             ");
 
-            foreach ($_FILES['attachments']['name'] as $idx => $filename) {
-                $error   = $_FILES['attachments']['error'][$idx];
-                $tmpName = $_FILES['attachments']['tmp_name'][$idx];
+            foreach ($_FILES['attachments']['name'] as $attId => $filename) {
+                $error   = $_FILES['attachments']['error'][$attId];
+                $tmpName = $_FILES['attachments']['tmp_name'][$attId];
 
                 if ($error === UPLOAD_ERR_OK) {
                     $uniqueName  = time() . '_' . basename($filename);
@@ -96,7 +96,7 @@ try {
 
                     if (move_uploaded_file($tmpName, $destination)) {
                         // Save in DB
-                        $stmtFiles->execute([$applicationId, $filename, $uniqueName]);
+                        $stmtFiles->execute([$applicationId, $filename, $uniqueName, $attId]);
                     }
                 }
             }

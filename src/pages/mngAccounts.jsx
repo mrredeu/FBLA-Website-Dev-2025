@@ -122,10 +122,10 @@ const ManageAccounts = () => {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
-            <option value="all">All Users</option>
-            <option value="approved">Approved Users</option>
-            <option value="pending">Pending Users</option>
-            <option value="denied">Denied Users</option>
+            <option value="all">All</option>
+            <option value="approved">Approved</option>
+            <option value="pending">Pending</option>
+            <option value="denied">Denied</option>
           </select>
         </div>
 

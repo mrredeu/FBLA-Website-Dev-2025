@@ -9,6 +9,17 @@ const JobSubmissionDetails = () => {
   const [submission, setSubmission] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Add helper function to format date as MM/DD/YYYY, HH:mm
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    const hours = ("0" + date.getHours()).slice(-2);
+    const minutes = ("0" + date.getMinutes()).slice(-2);
+    return `${month}/${day}/${year} - ${hours}:${minutes}`;
+  };
+
   useEffect(() => {
     // Possibly check if employer is logged in
     const employerEmail = localStorage.getItem("email");
@@ -63,7 +74,7 @@ const JobSubmissionDetails = () => {
       <div className={styles.submissionDetailsContainer}>
         <h1 className={styles.submissionDetailsTitle}>Submission Details</h1>
         <p className={styles.submissionDetailsText}>
-          <strong>Job Position:</strong> {jobTitle}
+          <strong>Job:</strong> {jobTitle}
         </p>
         <p className={styles.submissionDetailsText}>
           <strong>Student Name:</strong> {studentName}
@@ -72,7 +83,7 @@ const JobSubmissionDetails = () => {
           <strong>Student Email:</strong> {studentEmail}
         </p>
         <p className={styles.submissionDetailsText}>
-          <strong>Submitted At:</strong> {created_at}
+          <strong>Submitted At:</strong> {formatDate(created_at)}
         </p>
 
         <h2 className={styles.submissionDetailsSubtitle}>Survey Answers</h2>
@@ -108,6 +119,9 @@ const JobSubmissionDetails = () => {
           <ul className={styles.submissionDetailsList}>
             {attachments.map((file) => (
               <li key={file.id} className={styles.submissionDetailsListItem}>
+                {file.title && (
+                  <span className={styles.attachmentTitle}>{file.title}: </span>
+                )}
                 <a
                   href={`/api/uploads/${file.saved_path}`}
                   target="_blank"

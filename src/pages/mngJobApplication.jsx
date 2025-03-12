@@ -89,7 +89,9 @@ const ManageJobApplications = () => {
           <div className="jobs-list">
             {jobs.map((job) => (
               <div key={job.id} className="job-card">
-                <h2>{job.title}</h2>
+                <h2>
+                  {job.title} - {job.is_approved === 0 ? "Pending" : "Open"}
+                </h2>
                 <p>
                   <strong>Location:</strong> {job.location}
                 </p>

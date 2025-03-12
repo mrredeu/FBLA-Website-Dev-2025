@@ -44,7 +44,6 @@ CREATE TABLE IF NOT EXISTS attachments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     job_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
-    file_path TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE
 );
@@ -76,8 +75,10 @@ CREATE TABLE IF NOT EXISTS job_application_answers (
 CREATE TABLE IF NOT EXISTS job_application_files (
     id INT AUTO_INCREMENT PRIMARY KEY,
     application_id INT NOT NULL,
+    attachment_id INT NOT NULL,  -- New column to store the id from attachments
     original_filename VARCHAR(255) NOT NULL,
     saved_path VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (application_id) REFERENCES job_applications(id) ON DELETE CASCADE
+    FOREIGN KEY (application_id) REFERENCES job_applications(id) ON DELETE CASCADE,
+    FOREIGN KEY (attachment_id) REFERENCES attachments(id) ON DELETE CASCADE
 );

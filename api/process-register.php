@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         $emailResponse = sendEmail($email, "Thank You for Registering at Beehive's Job Portal", "
-                <h1>Welcome to BSTA!</h1>
+                <h2 style='color:#FE9B22;'>Welcome to BSTA!</h2>
                 <p>Hi $full_name,</p>
-                <p>Thank you for registering. Your account is pending approval by the administrator.</p>
+                <p>Thank you for registering. Your account is pending approval by an administrator.</p>
                 <p>Please wait for further updates.</p>
                 <br>
                 <p>Best regards,</p>
