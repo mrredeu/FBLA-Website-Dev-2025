@@ -120,3 +120,11 @@
   background-color: #c0392b;
   transform: scale(1.02);
 }
+
+/* Status classes */
+.status-open {
+  color: green;
+}
+.status-pending {
+  color: rgb(254, 155, 34);
+}

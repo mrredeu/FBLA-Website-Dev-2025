@@ -166,7 +166,7 @@ const Navbar = () => {
               {/* Conditional Links Based on Role */}
               {(!session.role || session.role === "student") && (
                 <li>
-                  <a href="/jobs-list">Job Listings</a>
+                  <a href="/jobs-list">Job Postings</a>
                 </li>
               )}
               {session.role === "admin" && (
@@ -182,7 +182,7 @@ const Navbar = () => {
               {session.role === "employer" && (
                 <>
                   <li>
-                    <a href="/manage-job-applications">Manage Applications</a>
+                    <a href="/manage-job-applications">Manage Postings</a>
                   </li>
                   <li>
                     <a href="/job-submissions">Review Submissions</a>
@@ -256,7 +256,7 @@ const Navbar = () => {
               {(!session.role || session.role === "student") && (
                 <li>
                   <a href="/jobs-list" onClick={() => setHamburgerOpen(false)}>
-                    Job Listings
+                    Job Postings
                   </a>
                 </li>
               )}
@@ -275,7 +275,7 @@ const Navbar = () => {
                       href="/review-job-postings"
                       onClick={() => setHamburgerOpen(false)}
                     >
-                      Review Job Listings
+                      Review Job Postings
                     </a>
                   </li>
                 </>
@@ -287,7 +287,7 @@ const Navbar = () => {
                       href="/manage-job-applications"
                       onClick={() => setHamburgerOpen(false)}
                     >
-                      Manage Applications
+                      Manage Postings
                     </a>
                   </li>
                   <li>

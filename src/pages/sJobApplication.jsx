@@ -172,7 +172,7 @@ const SubmitApplication = () => {
             onChange={(e) => handleFormFieldChange("pay", e.target.value)}
           />
 
-          <h2>Survey Questions</h2>
+          <h2>Survey Questions (Optional)</h2>
           {questions.map((question, index) => (
             <div key={index} className="question">
               <label htmlFor={`question_${index}`}>Question {index + 1}:</label>
@@ -185,7 +185,6 @@ const SubmitApplication = () => {
                   handleQuestionChange(index, "text", e.target.value)
                 }
                 placeholder="Enter question"
-                required
               />
               <label htmlFor={`char_limit_${index}`}>Character Limit:</label>
               <input
@@ -200,15 +199,13 @@ const SubmitApplication = () => {
                 min="1"
                 max="5000"
               />
-              {index > 0 && (
-                <button
-                  type="button"
-                  onClick={() => handleRemoveQuestion(index)}
-                  className="remove-button"
-                >
-                  Remove
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => handleRemoveQuestion(index)}
+                className="remove-button"
+              >
+                Remove
+              </button>
             </div>
           ))}
           <button type="button" onClick={handleAddQuestion}>
@@ -227,15 +224,13 @@ const SubmitApplication = () => {
                 onChange={(e) => handleAttachmentChange(index, e.target.value)}
                 placeholder="Attachment title"
               />
-              {index > 0 && (
-                <button
-                  type="button"
-                  onClick={() => handleRemoveAttachment(index)}
-                  className="remove-button"
-                >
-                  Remove
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => handleRemoveAttachment(index)}
+                className="remove-button"
+              >
+                Remove
+              </button>
             </div>
           ))}
           <button type="button" onClick={handleAddAttachment}>

@@ -130,6 +130,9 @@ const UpdateJob = ({ jobId, onBack }) => {
       return;
     }
 
+    // Filter out survey questions with empty text
+    const validQuestions = questions.filter((q) => q.text.trim() !== "");
+
     // Build the payload
     const updatedData = {
       jobId,
@@ -138,8 +141,8 @@ const UpdateJob = ({ jobId, onBack }) => {
       location: formFields.location,
       description: formFields.description,
       pay: formFields.pay,
-      questions: questions.map((q) => q.text),
-      character_limit: questions.map((q) => q.charLimit || 5000),
+      questions: validQuestions.map((q) => q.text),
+      character_limit: validQuestions.map((q) => q.charLimit || 5000),
       attachments: attachments.map((a) => a.title),
     };
 
@@ -172,7 +175,7 @@ const UpdateJob = ({ jobId, onBack }) => {
         <button className="back-btn" onClick={handleBack}>
           Back
         </button>
-        <h1>Job Application</h1>
+        <h1>Job Posting</h1>
         <form onSubmit={handleUpdate}>
           <label htmlFor="title">Job Title:</label>
           <input
@@ -220,7 +223,7 @@ const UpdateJob = ({ jobId, onBack }) => {
             onChange={(e) => handleFormFieldChange("pay", e.target.value)}
           />
 
-          <h2>Survey Questions</h2>
+          <h2>Survey Questions (Optional)</h2>
           {questions.map((question, index) => (
             <div key={index} className="question">
               <label>Question {index + 1}:</label>
@@ -231,9 +234,7 @@ const UpdateJob = ({ jobId, onBack }) => {
                   handleQuestionChange(index, "text", e.target.value)
                 }
                 placeholder="Enter question"
-                required
               />
-
               <label>Character Limit:</label>
               <input
                 type="number"
@@ -245,16 +246,14 @@ const UpdateJob = ({ jobId, onBack }) => {
                 min="1"
                 max="5000"
               />
-
-              {index > 0 && (
-                <button
-                  type="button"
-                  onClick={() => handleRemoveQuestion(index)}
-                  className="remove-button"
-                >
-                  Remove
-                </button>
-              )}
+              {/* Always show remove button */}
+              <button
+                type="button"
+                onClick={() => handleRemoveQuestion(index)}
+                className="remove-button"
+              >
+                Remove
+              </button>
             </div>
           ))}
           <button type="button" onClick={handleAddQuestion}>
@@ -271,22 +270,20 @@ const UpdateJob = ({ jobId, onBack }) => {
                 onChange={(e) => handleAttachmentChange(index, e.target.value)}
                 placeholder="Attachment title"
               />
-              {index > 0 && (
-                <button
-                  type="button"
-                  onClick={() => handleRemoveAttachment(index)}
-                  className="remove-button"
-                >
-                  Remove
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => handleRemoveAttachment(index)}
+                className="remove-button"
+              >
+                Remove
+              </button>
             </div>
           ))}
           <button type="button" onClick={handleAddAttachment}>
             + Add Attachment
           </button>
           <button type="submit" className="submit-button">
-            Update Job Application
+            Update Job Posting
           </button>
         </form>
       </div>

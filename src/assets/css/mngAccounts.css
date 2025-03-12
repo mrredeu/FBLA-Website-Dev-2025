@@ -73,6 +73,7 @@
 }
 
 .manage-actions button {
+  width: 100px;
   margin: 5px;
   padding: 8px 14px;
   border: none;

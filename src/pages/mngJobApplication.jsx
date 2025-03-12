@@ -39,7 +39,7 @@ const ManageJobApplications = () => {
   };
 
   const handleDeleteJob = async (jobId) => {
-    if (window.confirm("Are you sure you want to delete this job?")) {
+    if (window.confirm("Are you sure you want to delete this posting?")) {
       try {
         const response = await fetch(
           "/api/manage-job-application.php?action=deleteJob",
@@ -57,7 +57,7 @@ const ManageJobApplications = () => {
           alert(data.message || "Failed to delete job.");
         }
       } catch (error) {
-        console.error("Error deleting job:", error);
+        console.error("Error deleting posting:", error);
       }
     }
   };
@@ -76,13 +76,13 @@ const ManageJobApplications = () => {
     <>
       <Navbar />
       <div className="manage-jobs-container">
-        <h1>Manage Job Applications</h1>
+        <h1>Manage Job Postings</h1>
         <div className="manage-jobs-actions">
           <button
             className="create-application-btn"
             onClick={() => (window.location.href = "/submit-job-application")}
           >
-            Create Application
+            Create Posting
           </button>
         </div>
         {jobs.length > 0 ? (
@@ -90,7 +90,14 @@ const ManageJobApplications = () => {
             {jobs.map((job) => (
               <div key={job.id} className="job-card">
                 <h2>
-                  {job.title} - {job.is_approved === 0 ? "Pending" : "Open"}
+                  {job.title}{" "}
+                  <span
+                    className={
+                      job.is_approved === 0 ? "status-pending" : "status-open"
+                    }
+                  >
+                    ({job.is_approved === 0 ? "Pending" : "Open"})
+                  </span>
                 </h2>
                 <p>
                   <strong>Location:</strong> {job.location}
@@ -106,13 +113,13 @@ const ManageJobApplications = () => {
                     className="view-applications-btn"
                     onClick={() => handleViewApplications(job.id)}
                   >
-                    View Application
+                    View Posting
                   </button>
                   <button
                     className="delete-job-btn"
                     onClick={() => handleDeleteJob(job.id)}
                   >
-                    Delete Application
+                    Delete Posting
                   </button>
                 </div>
               </div>

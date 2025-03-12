@@ -84,9 +84,18 @@
 }
 
 .submitapplication-container .remove-button {
+  margin-top: 5px;
   background-color: #dc3545;
 }
 
 .submitapplication-container .remove-button:hover {
   background-color: #c82333;
+}
+
+.submitapplication-container .question {
+  margin-bottom: 20px;
+}
+
+.submitapplication-container .attachment {
+  margin-bottom: 20px;
 }

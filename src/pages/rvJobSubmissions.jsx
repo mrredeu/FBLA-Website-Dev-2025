@@ -107,7 +107,7 @@ const JobSubmissionsList = () => {
                         className="rv-job-submission-delete-button"
                         onClick={() => handleDelete(submission.applicationId)}
                       >
-                        Delete
+                        Reject
                       </button>
                     </div>
                   </td>
