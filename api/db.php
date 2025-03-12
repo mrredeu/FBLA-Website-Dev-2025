@@ -1,21 +1,23 @@
 <?php
+// Set CORS and JSON header for API responses
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
+// Database configuration
 $host = 'localhost';  // The host for MySQL
 $db = 'job_portal';   // The database name
 $user = 'root';       // Root user (default for MySQL)
 $pass = '';           // No password for local setup
 
 try {
-    // Create a PDO connection
+    // Establish a PDO connection to MySQL
     $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Pre-hash the admin password
+    // Create hashed password for default admin
     $adminPassword = password_hash('a1b2c3d4z5', PASSWORD_BCRYPT);
 
-    // Insert the default admin user
+    // Insert default admin user (if not existing)
     $adminQuery = "
         INSERT INTO users (full_name, email, password, role, is_approved)
         VALUES (:full_name, :email, :password, :role, :is_approved)
@@ -29,7 +31,7 @@ try {
     $stmt->bindValue(':is_approved', 1);
     $stmt->execute();
 
-    // Insert default jobs only if they do not already exist
+    // Define default jobs to be inserted if they don't exist
     $jobs = [
         [
             'title' => 'Crew Member - McDonald\'s',
@@ -69,6 +71,7 @@ try {
         ]
     ];
 
+    // Insert each default job entry if it is missing
     foreach ($jobs as $job) {
         $jobsQuery = "
             INSERT INTO jobs (title, location, description, pay, is_approved, poster_email, username)
@@ -89,6 +92,6 @@ try {
         $stmt->execute();
     }
 } catch (PDOException $e) {
-    // Handle errors
+    // On error, terminate and output message
     die("Database error: " . $e->getMessage());
 }

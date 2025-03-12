@@ -8,7 +8,7 @@ const Jobs = () => {
   const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch jobs from the backend
+  // Get jobs data
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -24,15 +24,15 @@ const Jobs = () => {
     fetchJobs();
   }, []);
 
-  // Instead of calling a direct backend endpoint, we navigate to "/apply/:jobId"
+  // Start application process
   const handleApplyClick = (jobId) => {
-    // If not logged in or not a student, handle accordingly
+    // Confirm student login
     const studentEmail = localStorage.getItem("email");
     if (!studentEmail || userRole !== "student") {
       alert("Please log in as a student to apply.");
       return;
     }
-    // Navigate to the ApplyJob page, passing the jobId
+    // Navigate to application page
     navigate(`/apply/${jobId}`);
   };
 

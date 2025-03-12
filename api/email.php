@@ -8,16 +8,17 @@ function sendEmail($email, $subject, $body)
 {
     $response = ["success" => false, "message" => ""];
 
-    // Validate required fields
+    // Check for missing inputs
     if (empty($email) || empty($subject) || empty($body)) {
         $response["message"] = "Missing required email fields.";
         return $response;
     }
 
     try {
+        // Initialize PHPMailer
         $mail = new PHPMailer(true);
 
-        // SMTP Configuration
+        // Configure SMTP
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
@@ -26,10 +27,11 @@ function sendEmail($email, $subject, $body)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
-        // Email Metadata
+        // Set sender and recipient details
         $mail->setFrom('pashatestermails@gmail.com', 'Beehive Science & Technology Academy');
         $mail->addAddress($email);
 
+        // Compose email content
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body    = $body;

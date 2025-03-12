@@ -3,11 +3,13 @@ import "../assets/css/status.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+// Account component: Displays status messages based on URL parameters.
 const Account = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [statusType, setStatusType] = useState("");
 
+  // Determine account status from query parameter.
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const status = params.get("status");
@@ -27,6 +29,7 @@ const Account = () => {
     <>
       <Navbar />
       <div className="saccount-container">
+        {/* Card: Displays corresponding message based on status */}
         <div className={`saccount-card ${statusType}`}>
           {statusType === "error" ? (
             <>
@@ -68,6 +71,7 @@ const Account = () => {
               </p>
             </>
           )}
+          {/* Navigation: Return home */}
           <button onClick={() => navigate("/homepage")}>Go Back to Home</button>
         </div>
       </div>

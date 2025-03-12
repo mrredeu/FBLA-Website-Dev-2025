@@ -1,4 +1,5 @@
 <?php
+// Initialize dependencies and set JSON header
 require 'db.php';               // Your PDO connection (PDO $pdo)
 require '../vendor/autoload.php'; // PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,19 +11,19 @@ $response = ["success" => false, "message" => ""];
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Gather basic POST data
+        // Collect POST data
         $jobId        = $_POST['jobId']        ?? null;
         $studentEmail = $_POST['studentEmail'] ?? null;
-        $responses    = $_POST['responses']    ?? []; // questionId => answer
+        $responses    = $_POST['responses']    ?? []; // Q&A mapping
 
-        // Basic validation
+        // Validate required inputs
         if (!$jobId || !$studentEmail) {
             $response["message"] = "Missing jobId or studentEmail.";
             echo json_encode($response);
             exit;
         }
 
-        // 1) Fetch Job Info (title + employer email)
+        // Retrieve job info: title and employer email
         $stmtJob = $pdo->prepare("
             SELECT title, poster_email
             FROM jobs
@@ -40,7 +41,7 @@ try {
         $jobTitle    = $jobRow["title"];
         $posterEmail = $jobRow["poster_email"];
 
-        // 2) Fetch Student's Full Name from users table
+        // Get applicant's full name if available
         $stmtUser = $pdo->prepare("
             SELECT full_name
             FROM users
@@ -48,11 +49,9 @@ try {
         ");
         $stmtUser->execute([$studentEmail]);
         $userRow = $stmtUser->fetch(PDO::FETCH_ASSOC);
-
-        // If the student is found, use full_name; otherwise just revert to their email
         $studentName = $userRow ? $userRow['full_name'] : $studentEmail;
 
-        // 3) Insert the main application record into `job_applications`
+        // Insert the main application record
         $stmtInsertApp = $pdo->prepare("
             INSERT INTO job_applications (job_id, student_email, created_at)
             VALUES (?, ?, NOW())
@@ -60,7 +59,7 @@ try {
         $stmtInsertApp->execute([$jobId, $studentEmail]);
         $applicationId = $pdo->lastInsertId();
 
-        // 4) Insert each question/answer into `job_application_answers`
+        // Record answers for each question
         if ($applicationId && !empty($responses)) {
             $stmtAnswers = $pdo->prepare("
                 INSERT INTO job_application_answers (application_id, question_id, answer_text)
@@ -71,14 +70,11 @@ try {
             }
         }
 
-        // 5) Handle file uploads and store references in `job_application_files`
-        //    (For example, storing the local path. If you later move to AWS S3, 
-        //     store the S3 URL or object key instead.)
+        // Process file attachments if provided
         if (!empty($_FILES['attachments']['name'])) {
-            // Create an uploads folder if not exists
             $uploadDir = __DIR__ . '/uploads/';
             if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
+                mkdir($uploadDir, 0755, true); // Create folder if missing
             }
 
             $stmtFiles = $pdo->prepare("
@@ -95,17 +91,14 @@ try {
                     $destination = $uploadDir . $uniqueName;
 
                     if (move_uploaded_file($tmpName, $destination)) {
-                        // Save in DB
                         $stmtFiles->execute([$applicationId, $filename, $uniqueName, $attId]);
                     }
                 }
             }
         }
 
-        // 6) Build a simpler email letting the employer know there's a new application
-        //    The employer can log in to see full details/answers/attachments.
+        // Compose email for employer notification
         $subject = "New Job Application Submitted: \"{$jobTitle}\"";
-        // For colors (Beehive’s orange #FE9B22), we’ll keep it minimal here
         $body = "
             <div style='font-family:Arial, sans-serif;'>
                 <h2 style='color:#FE9B22;'>New Job Application Received</h2>
@@ -127,10 +120,10 @@ try {
             </div>
         ";
 
-        // 7) Send the notification email via PHPMailer
+        // Send email using PHPMailer via SMTP
         $mail = new PHPMailer(true);
         try {
-            // SMTP settings
+            // SMTP Configuration
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;

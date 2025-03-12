@@ -1,7 +1,9 @@
+/* Section: Spacing for job listing area */
 .jobslist-section {
   padding: 40px 0;
 }
 
+/* Container: Centered layout with a card-like design */
 .jobslist-container {
   padding: 20px;
   max-width: 800px;
@@ -11,6 +13,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Card: Individual job listing style */
 .jobslist-jobListing {
   border: 1px solid #ddd;
   padding: 15px;
@@ -20,17 +23,20 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Card hover: Lift and shadow effect */
 .jobslist-jobListing:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Title: Job title appearance */
 .jobslist-jobListing h2 {
   margin: 0;
   font-size: 18px;
   color: #333;
 }
 
+/* Button: Primary apply button styling */
 .jobslist-applyButton {
   padding: 10px 20px;
   background-color: rgb(254, 155, 34);
@@ -41,11 +47,13 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Button hover: Color change and subtle scale-up */
 .jobslist-applyButton:hover {
   background-color: rgb(226, 138, 30);
   transform: scale(1.02);
 }
 
+/* Button disabled: Inactive state styling */
 .jobslist-disabledButton {
   padding: 10px 20px;
   background-color: #ddd;

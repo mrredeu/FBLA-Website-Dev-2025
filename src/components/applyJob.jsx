@@ -3,12 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "../assets/css/applyjob.css";
 
-// ApplyJob component to handle job application process
+// ApplyJob component: Handles the job application process.
 const ApplyJob = () => {
-  // Extract job ID from URL parameters
+  // Get job ID and navigation methods.
   const { jobId } = useParams();
   const navigate = useNavigate();
-  // State variables
+  // State for job details and form inputs.
   const [job, setJob] = useState(null);
   const [surveyQuestions, setSurveyQuestions] = useState([]);
   const [attachmentsRequired, setAttachmentsRequired] = useState([]);
@@ -16,18 +16,17 @@ const ApplyJob = () => {
   const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(true);
 
-  // useEffect hook to fetch job details on component mount
+  // Fetch job details and related survey data.
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        // Check if student is logged in
+        // Verify student login.
         const email = localStorage.getItem("email");
         if (!email) {
           alert("Please log in as a student to apply.");
           navigate("/login");
           return;
         }
-
         // Retrieve job details, attachments, and survey questions from API
         const response = await fetch(
           "/api/manage-job-application.php?action=getJobDetails",
@@ -40,7 +39,6 @@ const ApplyJob = () => {
 
         const data = await response.json();
         if (data.success && data.job) {
-          // Update state with fetched data
           setJob(data.job);
           setSurveyQuestions(data.surveyQuestions || []);
           setAttachmentsRequired(data.attachments || []);
@@ -57,7 +55,7 @@ const ApplyJob = () => {
     fetchJobDetails();
   }, [jobId, navigate]);
 
-  // Handle changes in the text fields for each question
+  // Update survey answer state.
   const handleAnswerChange = (questionId, value) => {
     setAnswers((prev) => ({
       ...prev,
@@ -65,7 +63,7 @@ const ApplyJob = () => {
     }));
   };
 
-  // Handle changes in file inputs
+  // Update file attachment state.
   const handleFileChange = (attachmentId, file) => {
     setFiles((prev) => ({
       ...prev,
@@ -73,25 +71,22 @@ const ApplyJob = () => {
     }));
   };
 
-  // Submit the form along with files
+  // Submit application; include text responses and file attachments.
   const handleSubmitApplication = async (e) => {
     e.preventDefault();
-
     const studentEmail = localStorage.getItem("email");
     if (!studentEmail) {
       alert("Please log in as a student to apply.");
       return;
     }
-
+    // Prepare form data.
     const formData = new FormData();
     formData.append("jobId", jobId);
     formData.append("studentEmail", studentEmail);
 
     // Include survey responses
     surveyQuestions.forEach((q) => {
-      const questionId = q.id;
-      const answer = answers[questionId] || "";
-      formData.append(`responses[${questionId}]`, answer);
+      formData.append(`responses[${q.id}]`, answers[q.id] || "");
     });
 
     // Append files based on attachments
@@ -107,7 +102,6 @@ const ApplyJob = () => {
         method: "POST",
         body: formData,
       });
-
       const result = await response.json();
       if (result.success) {
         alert("Application submitted successfully!");
@@ -121,7 +115,7 @@ const ApplyJob = () => {
     }
   };
 
-  // Loading state
+  // Render loading state.
   if (loading) {
     return (
       <>
@@ -136,7 +130,7 @@ const ApplyJob = () => {
     );
   }
 
-  // Job not found or error occurred
+  // Render message if job details are missing.
   if (!job) {
     return (
       <>
@@ -151,7 +145,7 @@ const ApplyJob = () => {
     );
   }
 
-  // Render the application form
+  // Render the job application form.
   return (
     <>
       <Navbar />
@@ -172,7 +166,7 @@ const ApplyJob = () => {
 
         {/* Application Form */}
         <form onSubmit={handleSubmitApplication} encType="multipart/form-data">
-          {/* Survey Questions */}
+          {/* Render survey questions if available */}
           {surveyQuestions.length > 0 && (
             <>
               <h2>Survey Questions</h2>
@@ -198,7 +192,7 @@ const ApplyJob = () => {
             </>
           )}
 
-          {/* Attachment Requirements */}
+          {/* Render attachments if required */}
           {attachmentsRequired.length > 0 && (
             <>
               <h2>Attachments</h2>
@@ -220,7 +214,7 @@ const ApplyJob = () => {
             </>
           )}
 
-          {/* Submit Button */}
+          {/* Submit application */}
           <button type="submit" className="applyjob-submitButton">
             Submit Application
           </button>

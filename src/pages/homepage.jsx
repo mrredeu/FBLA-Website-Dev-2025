@@ -6,6 +6,7 @@ import intern2 from "../assets/images/intern-2.png";
 import intern3 from "../assets/images/intern-3.jpg";
 
 const HomePage = () => {
+  // Slide data: image, title, description, link.
   const slides = [
     {
       img: intern1,
@@ -30,9 +31,10 @@ const HomePage = () => {
     },
   ];
 
+  // State: current slide index.
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Function to move to a specific slide
+  // Update slide index with wrap-around logic.
   const showSlide = (index) => {
     setCurrentIndex(() => {
       if (index < 0) return slides.length - 1;
@@ -41,9 +43,9 @@ const HomePage = () => {
     });
   };
 
-  // Auto-slide every 10 seconds
+  // Auto-cycle slides every 10 seconds.
   useEffect(() => {
-    const interval = setInterval(function () {
+    const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, 10000);
     return () => clearInterval(interval);
@@ -51,11 +53,13 @@ const HomePage = () => {
 
   return (
     <>
+      {/* Render Navbar */}
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section: slider and overlay */}
       <section className="homepage-slider">
         <div className="homepage-slider-container">
+          {/* Slide Items */}
           {slides.map((slide, index) => (
             <div
               key={index}
@@ -93,7 +97,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer Section */}
       <footer>
         <div className="container">
           <p>&copy; 2024 Beehive Science & Technology Academy</p>
