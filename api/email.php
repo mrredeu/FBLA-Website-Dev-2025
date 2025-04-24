@@ -28,7 +28,7 @@ function sendEmail($email, $subject, $body)
         $mail->Port       = 465;
 
         // Set sender and recipient details
-        $mail->setFrom('pashatestermails@gmail.com', 'Beehive Science & Technology Academy');
+        $mail->setFrom(//Your email , 'Beehive Science & Technology Academy');
         $mail->addAddress($email);
 
         // Compose email content
